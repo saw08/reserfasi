@@ -9,14 +9,6 @@ export default function Cardruangan({ props }) {
         <div className="col-lg-4">
             <div className="gallery-item">
                 <div id={`${namaHasil}`} className="carousel slide" data-bs-ride="carousel">
-                    {props.foto1.map((data, i) => (
-                        <>
-                            {i == 0 ?
-                                (<button type="button" data-bs-target={`#${namaHasil}`} data-bs-slide-to={i} className="active" aria-current="true" aria-label={`Slide ${i}`} />) :
-                                (<button type="button" data-bs-target={`#${namaHasil}`} data-bs-slide-to={i} aria-label={`Slide ${i}`} />)}
-
-                        </>
-                    ))}
                     <div className="carousel-inner">
                         {props.foto1.map((data, i) => (
                             <>

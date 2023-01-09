@@ -18,22 +18,25 @@ export default function Ruangancp() {
     let ruangan = data['message']
 
     return (
-        <section className="section-bg">
+        <section id="book-a-table">
             <div className="container" >
-                <div className="section-title text-center">
-                    <p style={{ fontSize: '28px' }}>ruangan</p>
+                {/* <div className="section-title text-center">
+                    <p style={{fontSize:'28px'}}>Mulai Reserfasi Sekarang</p>
+                </div> */}
+                <div className="section-title">
+                    <p style={{ fontSize: '22px' }}>Ruangan</p>
                 </div>
-                <div className="row col-lg-12">
-                    {ruangan.length === 0 ? (
-                        <></>
-                    ) : (
-                        <>
+                <div className="row col-lg-12 text-white">
+                        {ruangan.length === 0 ? (
+                            <></>
+                        ) : (
+                            <>
 
-                            {ruangan.map((data, i) => (
-                                <Cardruang props={data} />
-                            ))}
-                        </>
-                    )}
+                                {ruangan.map((data, i) => (
+                                    <Cardruang props={data} />
+                                ))}
+                            </>
+                        )}
                 </div>
             </div>
         </section>
