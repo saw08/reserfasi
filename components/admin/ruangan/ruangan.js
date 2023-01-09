@@ -18,7 +18,7 @@ export default function Ruangancp() {
     let ruangan = data['message']
 
     return (
-        <section id="book-a-table">
+        <section id="book-a-table bg-dark">
             <div className="container" >
                 {/* <div className="section-title text-center">
                     <p style={{fontSize:'28px'}}>Mulai Reserfasi Sekarang</p>
