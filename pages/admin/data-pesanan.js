@@ -1,6 +1,8 @@
+// import Pesanan from '../../components/admin/cardpesanan'
 
- function Datapesanan() {
+export default function Datapesanan() {
     return (
+        <div>
             <div>
                 {/* ======= Hero Section ======= */}
                 <section id="hero" className="d-flex align-items-center">
@@ -44,10 +46,11 @@
                         </div>
                     </div>
                 </section>{/* End Hero */}
-                
+                <main id="main">
+                </main>
             </div>
 
+        </div>
 
     )
 }
-export default Datapesanan;

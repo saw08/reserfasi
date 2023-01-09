@@ -1,7 +1,7 @@
 import Pesanan from '../../components/admin/cardpesanan'
 
 
- function Homeadmin() {
+export default function Homeadmin() {
     return (
         <div>
             <div>
@@ -80,4 +80,3 @@ import Pesanan from '../../components/admin/cardpesanan'
 
     )
 }
-export default Homeadmin;

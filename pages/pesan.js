@@ -6,7 +6,7 @@ export default function Pesan() {
                     <h2>Reservation</h2>
                     <p>Lengkapi Data Reserfasi</p>
                 </div>
-                <form>
+                <form method="post" role="form" className="php-email-form" data-aos="fade-up" data-aos-delay={100}>
                     <div className="row">
                         <div className="col-lg-10 col-md-10 mt-3 form-group">
                             <label style={{ color: "white" }}>Nama Pemesan</label>
@@ -188,7 +188,7 @@ export default function Pesan() {
                         <div className="validate" />
                     </div>
                     <div className="text-center col-lg-10 col-md-10 form-group mt-3 mt-5">
-                        <a href="./"> <button className="book-a-table-btn" >Reservasi sekarang</button></a>
+                        <a href="/"> <button className="book-a-table-btn" >Reservasi sekarang</button></a>
                     </div>
                 </form>
             </div>

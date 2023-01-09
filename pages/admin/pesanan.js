@@ -1,6 +1,6 @@
 import Pesan from '../../components/admin/cardpesanan'
 
-function Pesanans() {
+export default function Pesanans() {
     return (
         <div>
             <div>
@@ -20,4 +20,3 @@ function Pesanans() {
 
     )
 }
-export default Pesanans;

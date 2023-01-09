@@ -85,7 +85,7 @@ export default function Tambahruang() {
         }
 
     };
-
+    
     const uploadToClient = (event) => {
         if (event.target.files && event.target.files[0]) {
             var x = document.getElementById("image");
@@ -190,7 +190,7 @@ export default function Tambahruang() {
                             </div>
 
                             <div className="text-center col-lg-6 col-md-10 form-group mt-3 mt-5">
-                                <button className="book-a-table-btn" type="submit" disabled={uploading === false ? (false) : (true)}>Tambah Ruangan</button>
+                                <button className="book-a-table-btn" type="submit"  disabled={uploading === false ? (false) : (true)}>Tambah Ruangan</button>
                             </div>
 
                         </div>

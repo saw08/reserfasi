@@ -2,7 +2,7 @@ import { Link, Image } from "next/link";
 import { useState } from 'react';
 import useSWR from 'swr'
 import Cardfoto from '../../components/admin/album/album'
- function Album() {
+export default function Album() {
     const [deskripsi, setDeskripsi] = useState('');
     const [foto1, setFoto] = useState('');
     const [image, setImage] = useState(null);
@@ -120,4 +120,3 @@ import Cardfoto from '../../components/admin/album/album'
         </>
     )
 }
-export default Album;

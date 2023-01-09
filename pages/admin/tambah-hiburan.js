@@ -1,4 +1,4 @@
- function Tambahhiburan() {
+export default function Tambahhiburan() {
     return (
         <>
             <section className="section-bg">
@@ -79,4 +79,3 @@
         </>
     )
 }
-export default Tambahhiburan;

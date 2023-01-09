@@ -7,9 +7,16 @@ export default function Cardruangan({ props }) {
 
     return (
         <div className="col-lg-4">
-            <div style={{ borderStyle: 'solid', borderColor: 'white', borderRadius: '0.3rem' }}>
             <div className="gallery-item">
                 <div id={`${namaHasil}`} className="carousel slide" data-bs-ride="carousel">
+                    {props.foto1.map((data, i) => (
+                        <>
+                            {i == 0 ?
+                                (<button type="button" data-bs-target={`#${namaHasil}`} data-bs-slide-to={i} className="active" aria-current="true" aria-label={`Slide ${i}`} />) :
+                                (<button type="button" data-bs-target={`#${namaHasil}`} data-bs-slide-to={i} aria-label={`Slide ${i}`} />)}
+
+                        </>
+                    ))}
                     <div className="carousel-inner">
                         {props.foto1.map((data, i) => (
                             <>
@@ -34,14 +41,12 @@ export default function Cardruangan({ props }) {
                 </div>
 
             </div>
-            <div className="box p-3">
+            <div className="box ">
                 <span>{props.i}</span>
-                <h5>{props.namaruang}</h5>
-                <h6>kapasitas &nbsp;{props.kapasitas}&nbsp;orang</h6>
-                <h6>kapasitas&nbsp;{props.kapasitas}&nbsp;orang</h6>
+                <h4>{props.namaruang}</h4>
+                <h5>kapasitas{props.kapasitas}orang</h5>
                 <p>{props.deskripsi}</p>
-                </div>
-                </div>
+            </div>
         </div>
     )
 }

@@ -18,16 +18,12 @@ export default function Ruangancp() {
     let ruangan = data['message']
 
     return (
-        <div className='bg-dark'>
-        <section id="book-a-table">
+        <section className="section-bg">
             <div className="container" >
-                {/* <div className="section-title text-center">
-                    <p style={{fontSize:'28px'}}>Mulai Reserfasi Sekarang</p>
-                </div> */}
-                <div className="section-title">
-                    <p style={{ fontSize: '22px' }}>Ruangan</p>
+                <div className="section-title text-center">
+                    <p style={{ fontSize: '28px' }}>ruangan</p>
                 </div>
-                <div className="row text-white col-lg-12 ">
+                <div className="row col-lg-12">
                     {ruangan.length === 0 ? (
                         <></>
                     ) : (
@@ -40,7 +36,6 @@ export default function Ruangancp() {
                     )}
                 </div>
             </div>
-            </section>
-        </div>
+        </section>
     )
 }
