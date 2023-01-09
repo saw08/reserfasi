@@ -4,6 +4,7 @@ import Ruangan from '../../components/admin/ruangan/ruangan'
 
 export default function Tambahruang() {
     const [namaruang, setNamaruang] = useState('');
+    const [kategori, setKategori] = useState('');
     const [kapasitas, setKapasitas] = useState('');
     const [deskripsi, setDeskripsi] = useState('');
     const [foto1, setFoto] = useState([]);
@@ -15,8 +16,9 @@ export default function Tambahruang() {
     const clearInput = () => {
         setNamaruang('');
         setKapasitas('');
+        setKategori('');
         setDeskripsi('');
-        setFoto('');
+        setFoto([]);
         setUploading(false)
     }
 
@@ -36,9 +38,9 @@ export default function Tambahruang() {
                 method: "POST",
                 body
             }).then(r => r.json());
-            await console.log(response)
-            await console.log('Secure URL')
-            await console.log(response.secure_url)
+            // await console.log(response)
+            // await console.log('Secure URL')
+            // await console.log(response.secure_url)
             foto1.push(response.secure_url)
         }
         //Uploading
@@ -51,11 +53,12 @@ export default function Tambahruang() {
         clearInput();
         alert("Penambahan Data Sukses")
         // fields check
-        if (!deskripsi || !namaruang || !kapasitas || !foto1)
+        if (!deskripsi || !kategori || !namaruang || !kapasitas || !foto1)
             return setError('isi semua data');
         // post structure
         let ruangan = {
             namaruang,
+            kategori,
             kapasitas,
             deskripsi,
             foto1
@@ -70,6 +73,7 @@ export default function Tambahruang() {
         if (data.success) {
             // reset the fields
             setNamaruang('');
+            setKategori('');
             setKapasitas('');
             setDeskripsi('');
             setFoto('');
@@ -151,6 +155,14 @@ export default function Tambahruang() {
                             <div className="col-lg-6 col-md-10 form-group mt-3">
                                 <label style={{ color: "white" }}>Foto ruangan (dapat di isi 3 foto)</label>
                                 <input type="file" className="form-control" name="myImage" onChange={uploadToClient} />
+                            </div>
+                            <div className="col-lg-6 col-md-10 form-group mt-3">
+                                <label style={{ color: "white" }}>Foto ruangan (dapat di isi 3 foto)</label>
+                                <select className="form-control form-select" onChange={(e) => setKategori(e.target.value)} required>
+                                    <option>--Pilih Olahraga--</option>
+                                    <option value={'ruangan'}>Ruangan</option>
+                                    <option value={'pondok'}>pondok</option>
+                                </select>
                             </div>
                             <div className="col-lg-6 col-md-10 mt-3 form-group">
                                 <label style={{ color: "white" }} htmlFor="validatedCustomFile">Nama ruang </label>

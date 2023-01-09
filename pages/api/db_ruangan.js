@@ -24,6 +24,28 @@ async function getRuangan(req, res) {
         });
     }
 }
+async function deleteaRuangan(req, res) {
+    const { namaruang } = req.body
+    try {
+        // Connecting to the database
+        let { db } = await connectToDatabase();
+        // Deleting the post
+        await db.collection('ruang').deleteOne({
+            'namaruang': namaruang
+        });
+        // returning a message
+        return res.json({
+            message: 'Post deleted successfully',
+            success: true,
+        });
+    } catch (error) {
+        // returning an error
+        return res.json({
+            message: new Error(error).message,
+            success: false,
+        });
+    }
+};
 // menambah data kedalam collection mahasiswa
 async function addRuangan(req, res) {
     try {

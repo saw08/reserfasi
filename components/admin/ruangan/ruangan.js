@@ -16,7 +16,7 @@ export default function Ruangancp() {
 
 
     let ruangan = data['message']
-
+    
     return (
         <div className='bg-dark'>
         <section id="book-a-table ">
