@@ -7,10 +7,9 @@ export default function Cardruangan({ props }) {
     const router = useRouter();
     let namaHasil = props.namaruang.split(" ").join("");
     
-    const deleteruang = async (namaruang) => {
-        //change deleting state
-        setDeleting(true);
+    const deleteRuang = async () => {
         try {
+            console.log('Try')
             // Delete post
             await fetch('/api/db_ruangan', {
                 method: 'DELETE',
@@ -18,16 +17,14 @@ export default function Cardruangan({ props }) {
                     'Content-Type': 'application/json',
                 },
                 body: JSON.stringify({
-                    namaruang: props.namaruang,
+                    _id: props._id,
                 }),
             });
             // reset the deleting state
-            setDeleting(false);
             // reload the page
-            return router.push(router.asPath);
+            alert('ruangan Terhapus')
         } catch (error) {
             // stop deleting state
-            return setDeleting(false);
         }
     };
     return (
@@ -73,7 +70,7 @@ export default function Cardruangan({ props }) {
                 <p>{props.deskripsi}</p>
                 </div>
                 <button type="button"
-                    onClick={() => deleteruang()}
+                    onClick={() => deleteRuang()}
                     className="btn btn-outline-secondary mx-3" >
                     HAPUS
                 </button>

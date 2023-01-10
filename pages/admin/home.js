@@ -22,9 +22,9 @@ export default function Homeadmin() {
                                         </div>
                                     <div className='p-2 col-lg-4 '>
                                         <div className=" p-2" style={{ borderStyle: 'solid', borderColor: 'white', borderRadius: '0.3rem' }}>
-                                                <a style={{ textDecoration: 'none', color: 'white' }} href="/admin/tambah-paket" >
+                                                <a style={{ textDecoration: 'none', color: 'white' }} href="/admin/tambah-menu" >
                                                     <div className="section-title">
-                                                        <p style={{ fontSize: '22px' }}> paket</p>
+                                                        <p style={{ fontSize: '22px' }}> Menu</p>
                                                     </div>
                                                 </a>
                                             </div>

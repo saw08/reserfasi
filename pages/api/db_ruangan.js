@@ -24,14 +24,17 @@ async function getRuangan(req, res) {
         });
     }
 }
-async function deleteaRuangan(req, res) {
-    const { namaruang } = req.body
+async function deleteRuangan(req, res) {
+    var ObjectId = require('mongodb').ObjectId;
+    const { _id } = req.body;
+    const convertedObjectId = new ObjectId(_id);
     try {
         // Connecting to the database
         let { db } = await connectToDatabase();
         // Deleting the post
-        await db.collection('ruang').deleteOne({
-            'namaruang': namaruang
+        
+        await db.collection('ruangan').deleteOne({
+            '_id': convertedObjectId
         });
         // returning a message
         return res.json({
@@ -80,7 +83,7 @@ export default async function handler(req, res) {
             return updateRuangan(req, res);
         }
         case 'DELETE': {
-            return deleteaRuangan(req, res);
+            return deleteRuangan(req, res);
         }
     }
 }

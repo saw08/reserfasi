@@ -7,7 +7,7 @@ function navbarAdmin() {
     return (
         < Navbar id="header" className="navbar-dark d-flex align-items-cente" expand="lg">
             <Container className='container-fluid container-xl d-flex align-items-center justify-content-lg-between'>
-                <Navbar.Brand href="#home">
+                <Navbar.Brand href="/admin/home">
 
                     <img
                         className='logo me-auto me-lg-0'
@@ -36,8 +36,8 @@ function navbarAdmin() {
                         <Nav.Link className='nav-link scrollto' href="../admin/tambah-ruang">
                             <h5 className='text-white text-start'>Ruang</h5>
                         </Nav.Link>
-                        <Nav.Link className='nav-link scrollto' href="../admin/tambah-paket">
-                            <h5 className='text-white text-start'>Paket</h5>
+                        <Nav.Link className='nav-link scrollto' href="../admin/tambah-menu">
+                            <h5 className='text-white text-start'>Menu</h5>
                         </Nav.Link>
                         <Nav.Link className='nav-link scrollto' href="../admin/tambah-hiburan">
                             <h5 className='text-white text-start'>Hiburan</h5>
