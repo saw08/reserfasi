@@ -87,7 +87,7 @@ export default function Album() {
                         <h2>Reservation</h2>
                     </div>
                     <form onSubmit={handlePost} >
-                        <div className="row col-lg-12">
+                        <div className=" col-lg-12">
                             <div className="col-lg-6 col-md-10 form-group mt-3">
                                 <div className="col-6   ">
                                     <img src={createObjectURL} className='img img-fluid' style={{ width: '30', height: '20' }} />
