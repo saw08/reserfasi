@@ -28,21 +28,24 @@ export default function Pesan() {
                             <input type="date" className="form-control" placeholder="Date" />
                         </div>
                         <div className="col-lg-10 col-md-10 form-group mt-3">
-                            <label style={{ color: "white" }}>Pilih Paket</label>
-                            <select className="form-control form-select">
-                                <option disabled>pilih paket</option>
-                                <option>Paket 80 pax - A</option>
-                                <option>Paket 80 pax - B</option>
-                                <option>Paket 80 pax - C</option>
-                                <option>Paket 80 pax - D</option>
-                            </select>
+                            <label style={{ color: "white" }}>Jumlah Orang</label>
+                            <input type="number" className="form-control" name="people" id="people" placeholder="jumlah orang" data-rule="minlen:1" data-msg="Please enter at least 1 chars" />
                             <div className="validate" />
                         </div>
                         <div className="col-lg-10 col-md-10 form-group mt-3">
-                            <label style={{ color: "white" }}>Jumlah Tamu</label>
-                            <input type="number" className="form-control" name="people" id="people" placeholder="# of people" data-rule="minlen:1" data-msg="Please enter at least 1 chars" />
+                            <label style={{ color: "white" }}>Pilih Paket/Menu</label>
+                            <div className="scrollmenu form-control">
+                                <a data-bs-toggle="collapse" href="#jam"><button>Menu poko</button></a>
+                                <a data-bs-toggle="collapse" href="#jam"><button>Menu poko</button></a>
+                                <a data-bs-toggle="collapse" href="#jam"><button>Menu poko</button></a>
+                                <a data-bs-toggle="collapse" href="#jam"><button>Menu poko</button></a>
+                                <a data-bs-toggle="collapse" href="#jam"><button>Menu poko</button></a>
+                            </div>
+
+
                             <div className="validate" />
                         </div>
+                        
                         <div className="col-lg-10 col-md-10 form-group mt-3">
                             <label style={{ color: "white" }}>Jam Booking</label>
 

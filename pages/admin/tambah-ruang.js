@@ -190,7 +190,7 @@ export default function Tambahruang() {
                             </div>
                             <div className="col-lg-6 col-md-10 mt-3 form-group">
                                 <label style={{ color: "white" }}>Deskripsi</label>
-                                <input type="text"
+                                <textarea type="formcontrol"
                                     name="deskripsi"
                                     className="form-control"
                                     placeholder="deskripsi"

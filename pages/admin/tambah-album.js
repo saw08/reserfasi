@@ -4,7 +4,7 @@ import useSWR from 'swr'
 import Cardfoto from '../../components/admin/album/album'
 export default function Album() {
     const [deskripsi, setDeskripsi] = useState('');
-    const [foto1, setFoto] = useState('');
+    const [foto, setFoto] = useState('');
     const [image, setImage] = useState(null);
     const [createObjectURL, setCreateObjectURL] = useState(null);
     const [error, setError] = useState('');
@@ -97,7 +97,7 @@ export default function Album() {
                             </div>
                             <div className="col-lg-6 col-md-10 mt-3 form-group">
                                 <label style={{ color: "white" }}>Deskripsi album </label>
-                                <input type="text"
+                                <textarea type="text"
                                     name="deskripsi"
                                     className="form-control"
                                     placeholder="deskripsi"

@@ -1821,7 +1821,7 @@ section {
 
 .btn-apisport:disabled,
 .btn-apisport.disabled {
-  color: #cda45e;
+  color: #674100;
   background-color: transparent
 }
 ::-webkit-calendar-picker-indicator {
