@@ -32,20 +32,61 @@ export default function Pesan() {
                             <input type="number" className="form-control" name="people" id="people" placeholder="jumlah orang" data-rule="minlen:1" data-msg="Please enter at least 1 chars" />
                             <div className="validate" />
                         </div>
-                        <div className="col-lg-10 col-md-10 form-group mt-3">
+                        <div className="col-lg-10 col-md-10 form-group mt-3 panel panel-default">
                             <label style={{ color: "white" }}>Pilih Paket/Menu</label>
-                            <div className="scrollmenu form-control">
-                                <a data-bs-toggle="collapse" href="#jam"><button>Menu poko</button></a>
-                                <a data-bs-toggle="collapse" href="#jam"><button>Menu poko</button></a>
-                                <a data-bs-toggle="collapse" href="#jam"><button>Menu poko</button></a>
-                                <a data-bs-toggle="collapse" href="#jam"><button>Menu poko</button></a>
-                                <a data-bs-toggle="collapse" href="#jam"><button>Menu poko</button></a>
+                            <div className="scrollmenu form-control panel-heading">
+                                <a data-bs-toggle="collapse" data-parent="#accordion" href="#menu1"><button className="btn">Menu poko</button></a>
+                                <a data-bs-toggle="collapse" data-parent="#accordion" href="#menu2"><button className="btn">Menu poko</button></a>
+                                <a data-bs-toggle="collapse" data-parent="#accordion" href="#menu3"><button className="btn">Menu poko</button></a>
+                                <a data-bs-toggle="collapse" data-parent="#accordion" href="#menu4"><button className="btn">Menu poko</button></a>
+                                <a data-bs-toggle="collapse" data-parent="#accordion" href="#menu5"><button className="btn">Menu poko</button></a>
                             </div>
-
-
-                            <div className="validate" />
+                            <div className="panel-collapse collapse in" id="menu1">
+                                <label style={{ color: "white" }}>pilih menu disini</label>
+                                <div className='col-6 col-lg-3 mb-2' style={{ fontWeight: 500 }}>
+                                    <div>
+                                        <input type="checkbox" className="btn-check" id={`jam1`} />
+                                        <label className="btn-apisport-parent btn-apisport" htmlFor={`jam1`}>08.00</label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div className="panel-collapse collapse in" id="menu2">
+                                <label style={{ color: "white" }}>pilih menu disini</label>
+                                <div className='col-6 col-lg-3 mb-2' style={{ fontWeight: 500 }}>
+                                    <div>
+                                        <input type="checkbox" className="btn-check" id={`jam1`} />
+                                        <label className="btn-apisport-parent btn-apisport" htmlFor={`jam1`}>08.00</label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div className="panel-collapse collapse in" id="menu3">
+                                <label style={{ color: "white" }}>pilih menu disini</label>
+                                <div className='col-6 col-lg-3 mb-2' style={{ fontWeight: 500 }}>
+                                    <div>
+                                        <input type="checkbox" className="btn-check" id={`jam1`} />
+                                        <label className="btn-apisport-parent btn-apisport" htmlFor={`jam1`}>08.00</label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div className="panel-collapse collapse in" id="menu4">
+                                <label style={{ color: "white" }}>pilih menu disini</label>
+                                <div className='col-6 col-lg-3 mb-2' style={{ fontWeight: 500 }}>
+                                    <div>
+                                        <input type="checkbox" className="btn-check" id={`jam1`} />
+                                        <label className="btn-apisport-parent btn-apisport" htmlFor={`jam1`}>minum</label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div className="panel-collapse collapse in" id="menu5">
+                                <label style={{ color: "white" }}>pilih menu disini</label>
+                                <div className='col-6 col-lg-3 mb-2' style={{ fontWeight: 500 }}>
+                                    <div>
+                                        <input type="checkbox" className="btn-check" id={`jam1`} />
+                                        <label className="btn-apisport-parent btn-apisport" htmlFor={`jam1`}>menu makan</label>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
-                        
                         <div className="col-lg-10 col-md-10 form-group mt-3">
                             <label style={{ color: "white" }}>Jam Booking</label>
 

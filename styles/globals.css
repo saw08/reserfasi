@@ -14,12 +14,13 @@ div.scrollmenu {
 }
 
 div.scrollmenu a {
-  /* display: inline-block; */
+  display: inline-block;
   text-decoration: none;
+    color: white;
   
 }
 div.scrollmenu button {
-  /* display: inline-block; */
+  display: inline-block;
   color: white;
   text-align: center;
   padding: 4px;
@@ -30,6 +31,8 @@ div.scrollmenu button {
 }
 
 div.scrollmenu button:hover {
+    text-decoration: none;
+    color: white;
   background-color: #cda45e;}
 
 
