@@ -25,8 +25,8 @@ export default function Album() {
         const body = new FormData();
         //console.log("file", image)
         body.append("file", image);
-        body.append('upload_preset', 'kemarang-images');
-        const response = await fetch('https://api.cloudinary.com/v1_1/dlxni4x0g/image/upload', {
+        body.append('upload_preset', 'kemrangimg');
+        const response = await fetch('https://api.cloudinary.com/v1_1/perpus/image/upload', {
             method: 'POST',
             body
         }).then(r => r.json());
@@ -108,7 +108,7 @@ export default function Album() {
                             </div>
                             
                             <div className="text-center col-lg-10 col-md-10 form-group mt-3 mt-5">
-                                <button className="book-a-table-btn" type="submit"  disabled={uploading === false ? (false) : (true)}>Tambah Ruangan</button>
+                                <button className="book-a-table-btn" type="submit"  disabled={uploading === false ? (false) : (true)}>Tambah Album</button>
                             </div>
                         </div>
 

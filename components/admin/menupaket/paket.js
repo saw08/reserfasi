@@ -31,8 +31,8 @@ export default function TambahPaket() {
         //console.log("file", image)
         for (let i = 0; i < image.length; i++) {
             await body.append("file", image[i]);
-            body.append('upload_preset', 'kemarang-images');
-            const response = await fetch('https://api.cloudinary.com/v1_1/dlxni4x0g/image/upload', {
+            body.append('upload_preset', 'kemrangimg');
+            const response = await fetch('https://api.cloudinary.com/v1_1/perpus/image/upload', {
                 method: "POST",
                 body
             }).then(r => r.json());
