@@ -12,84 +12,55 @@ export default function ruangan({ props }) {
                     <div className="col-lg-6 menu-item filter-starters">
                         <img src="menu.jpeg" className="menu-img" alt />
                         <div className="menu-content">
-                            <a href="#">Lobster Bisque</a><span>$5.95</span>
-                        </div>
-                        <div className="menu-ingredients">
-                            Lorem, deren, trataro, filede, nerada
+                            <a href="#">Nama menu</a><span>Rp 12K</span>
                         </div>
                     </div>
-                    <div className="col-lg-6 menu-item filter-specialty">
-                        <img src="menu.jpeg" className="menu-img" alt />
-                        <div className="menu-content">
-                            <a href="#">Bread Barrel</a><span>$6.95</span>
-                        </div>
-                        <div className="menu-ingredients">
-                            Lorem, deren, trataro, filede, nerada
-                        </div>
-                    </div>
+                    
+                </div>
+                <div className="row menu-container">
                     <div className="col-lg-6 menu-item filter-starters">
                         <img src="menu.jpeg" className="menu-img" alt />
                         <div className="menu-content">
-                            <a href="#">Crab Cake</a><span>$7.95</span>
-                        </div>
-                        <div className="menu-ingredients">
-                            A delicate crab cake served on a toasted roll with lettuce and tartar sauce
+                            <a href="#">Nama menu</a><span>Rp 12K</span>
                         </div>
                     </div>
-                    <div className="col-lg-6 menu-item filter-salads">
-                        <img src="menu.jpeg" className="menu-img" alt />
-                        <div className="menu-content">
-                            <a href="#">Caesar Selections</a><span>$8.95</span>
-                        </div>
-                        <div className="menu-ingredients">
-                            Lorem, deren, trataro, filede, nerada
-                        </div>
-                    </div>
-                    <div className="col-lg-6 menu-item filter-specialty">
-                        <img src="menu.jpeg" className="menu-img" alt />
-                        <div className="menu-content">
-                            <a href="#">Tuscan Grilled</a><span>$9.95</span>
-                        </div>
-                        <div className="menu-ingredients">
-                            Grilled chicken with provolone, artichoke hearts, and roasted red pesto
-                        </div>
-                    </div>
+
+                </div>
+                <div className="row menu-container">
                     <div className="col-lg-6 menu-item filter-starters">
                         <img src="menu.jpeg" className="menu-img" alt />
                         <div className="menu-content">
-                            <a href="#">Mozzarella Stick</a><span>$4.95</span>
-                        </div>
-                        <div className="menu-ingredients">
-                            Lorem, deren, trataro, filede, nerada
+                            <a href="#">Nama menu</a><span>Rp 12K</span>
                         </div>
                     </div>
-                    <div className="col-lg-6 menu-item filter-salads">
+
+                </div>
+                <div className="row menu-container">
+                    <div className="col-lg-6 menu-item filter-starters">
                         <img src="menu.jpeg" className="menu-img" alt />
                         <div className="menu-content">
-                            <a href="#">Greek Salad</a><span>$9.95</span>
-                        </div>
-                        <div className="menu-ingredients">
-                            Fresh spinach, crisp romaine, tomatoes, and Greek olives
+                            <a href="#">Nama menu</a><span>Rp 12K</span>
                         </div>
                     </div>
-                    <div className="col-lg-6 menu-item filter-salads">
+
+                </div>
+                <div className="row menu-container">
+                    <div className="col-lg-6 menu-item filter-starters">
                         <img src="menu.jpeg" className="menu-img" alt />
                         <div className="menu-content">
-                            <a href="#">Spinach Salad</a><span>$9.95</span>
-                        </div>
-                        <div className="menu-ingredients">
-                            Fresh spinach with mushrooms, hard boiled egg, and warm bacon vinaigrette
+                            <a href="#">Nama menu</a><span>Rp 12K</span>
                         </div>
                     </div>
-                    <div className="col-lg-6 menu-item filter-specialty">
+
+                </div>
+                <div className="row menu-container">
+                    <div className="col-lg-6 menu-item filter-starters">
                         <img src="menu.jpeg" className="menu-img" alt />
                         <div className="menu-content">
-                            <a href="#">Lobster Roll</a><span>$12.95</span>
-                        </div>
-                        <div className="menu-ingredients">
-                            Plump lobster meat, mayo and crisp lettuce on a toasted bulky roll
+                            <a href="#">Nama menu</a><span>Rp 12K</span>
                         </div>
                     </div>
+
                 </div>
             </div>
         </section>

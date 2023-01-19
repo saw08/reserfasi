@@ -4,7 +4,7 @@ import useSWR from 'swr'
 
 
 
-export default function Home() {
+export default function Paketmap() {
     const fetcher = (...args) => fetch(...args).then((res) => res.json())
     const { data: data, error } = useSWR('/api/db_paket', fetcher, { refreshInterval: 1000 })
 

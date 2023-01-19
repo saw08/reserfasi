@@ -57,14 +57,14 @@ export default function Home() {
                       <div className="profile-card-6">
                       <img src="1.jpg" className="img img-fluid" />
                         <div className="profile-name">Hiburan 1</div>
-                        <div className="profile-position">Lorem Ipsum Donor</div>
+                        <div className="profile-position">deskripsi hiburan</div>
                       </div>
                     </div>
                     <div className='col-lg-4 col-sm-6'>
                       <div className="profile-card-6">
                         <img src="2.jpg" className="img img-fluid" />
                         <div className="profile-name">Hiburan 2</div>
-                        <div className="profile-position">Lorem Ipsum Donor</div>
+                        <div className="profile-position">deskripsi hiburan</div>
                       </div>
                     </div>
                     <div className='col-lg-4 col-sm-6'>
@@ -72,7 +72,7 @@ export default function Home() {
                         <img src="3.jpg" className="img img-fluid" />
                         <div className="profile-name">JOHN
                           <br />DOE</div>
-                        <div className="profile-position">Lorem Ipsum Donor</div>
+                        <div className="profile-position">deskripsi hiburan</div>
                       </div>
                     </div>
                   </div>
