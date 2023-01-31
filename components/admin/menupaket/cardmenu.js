@@ -23,13 +23,16 @@ export default function Cardpesanan({ props }) {
         }
     };
     return (
-        <div className="col-lg-6 Mmenu filter-specialty">
-            <div className="menu-content">
-                <a href="#">Lobster Roll</a><span>$12.95</span>
+        <div className="col-lg-6 col-md-6" style={{ borderStyle: 'solid', borderColor: 'GrayText', borderRadius: '0.4rem' }}>
+            <div className="menu-content p-2">
+                <a href="">{props.namamenu}</a><span style={{textAligent:'left'}}>Rp {props.harga}</span>
+                
             </div>
-            <div className="menu-ingredients">
-                Plump lobster meat, mayo and crisp lettuce on a toasted bulky roll
-            </div>
+            <button type="button"
+                onClick={() => deleteAlbum()}
+                className="btn btn-outline-secondary my-2" >
+                HAPUS
+            </button>
         </div>
 
     )

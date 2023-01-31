@@ -3,39 +3,29 @@ const { connectToDatabase } = require('../../lib/mongodb');
 const ObjectId = require('mongodb').ObjectId;
 // mengambil data dari collection Transaksi
 
-async function getDetailLapangan(req, res) {
-    const { idLapangan, namaVenueReq, namaLapanganReq, tglMainReq } = req.query
-    const convertedObjectId = new ObjectId(idLapangan);
+async function getPesanan(req, res) {
     try {
         // connect to the database
         let { db } = await connectToDatabase();
-        let infoLapangan = await db
-            .collection('lapangan')
+        let paket = await db
+            .collection('paket')
             .find({
-                _id: convertedObjectId
             })
-            .sort({ idfavorit: -1 })
             .toArray();
-        let infoVenue = await db
-            .collection('mitra')
+        let menu = await db
+            .collection('menu')
             .find({
-                namaVenue: namaVenueReq
-            }, { projection: { 'namaVenue': 1, 'hariOperasional': 1, 'noWa': 1 } })
-            .sort({ idfavorit: -1 })
+            })
             .toArray();
-        let infoTransaksi = await db
-            .collection('transaksi')
+        let ruangan = await db
+            .collection('ruangan')
             .find({
-                namaVenue: namaVenueReq,
-                lapangan: namaLapanganReq,
-                tglMain: tglMainReq
-            }, { projection: { 'tglMain': 1, 'jadwalMain': 1 } })
-            .sort({ idfavorit: -1 })
+            })
             .toArray();
         let hasil = {}
-        hasil['infoTransaksi'] = infoTransaksi
-        hasil['infoLapangan'] = infoLapangan
-        hasil['infoVenue'] = infoVenue
+        hasil['paket'] = paket
+        hasil['menu'] = menu
+        hasil['ruangan'] = ruangan
         // return the posts
         return res.json({
             message: JSON.parse(JSON.stringify(hasil)),
@@ -55,7 +45,7 @@ export default async function handler(req, res) {
     // switch the methods
     switch (req.method) {
         case 'GET': {
-            return getDetailLapangan(req, res);
+            return getPesanan(req, res);
         }
         case 'POST': {
             return addFavorit(req, res);

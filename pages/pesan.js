@@ -1,4 +1,19 @@
+import useSWR from 'swr'
+
 export default function Pesan() {
+    const fetcher = (...args) => fetch(...args).then((res) => res.json())
+    const { data: data, error } = useSWR('/api/db_pesanan', fetcher, { refreshInterval: 1000 })
+    if (!data) {
+        return <div className="spinner"></div>
+    } else if (error) {
+        return <div>Something went wrong</div>
+    }
+    let pesanArr = data['message']
+    let ruangan = pesanArr['ruangan']
+    let menu = pesanArr['menu']
+    let paket = pesanArr['paket']
+    console.log(pesanArr)
+
     return (
         <section id="events" className="events">
             <div className="container" >
@@ -97,38 +112,22 @@ export default function Pesan() {
                                 <icon className='fa fa-sort-amount-desc'></icon>&nbsp;Pilih Ruangan
                             </a>
                             <div className="row col collapse multi-collapse text-start mt-4" id="ruang">
-                                <div className="col-4  p-2">
-                                    <input type="checkbox" id={`btn-check1332`}
-                                        autoComplete="off" name='ruangan1' className="btn-check" />
-                                    <label className="card btn-apisport btn-apisport-parent" htmlFor={`btn-check1332`}><div>
-                                        <img src="./1.jpg" className="card-img-top" alt="..." />
-                                        <div className="card-body">
-                                            <p className="card-text" style={{ fontSize: '14px', lineHeight: '80%' }}><b>the bulk of the card's content.</b></p>
-                                        </div>
-                                    </div></label>
-                                </div>
-                                <div className="col-4  p-2">
-                                    <input type="checkbox" id={`btn-check13732`}
-                                        autoComplete="off" name='ruangan1' className="btn-check" />
-                                    <label className="card btn-apisport btn-apisport-parent" htmlFor={`btn-check13732`}><div>
-                                        <img src="./1.jpg" className="card-img-top" alt="..." />
-                                        <div className="card-body">
-                                            <p className="card-text" style={{ fontSize: '14px', lineHeight: '80%' }}><b>the bulk of the card's content.</b></p>
-                                        </div>
-                                    </div></label>
-                                </div>
-                                <div className="col-4  p-2">
-                                    <input type="checkbox" id={`btn-check132`}
-                                        autoComplete="off" name='ruangan1' className="btn-check" />
-                                    <label className="card btn-apisport btn-apisport-parent" htmlFor={`btn-check132`}><div>
-                                        <img src="./1.jpg" className="card-img-top" alt="..." />
-                                        <div className="card-body">
-                                            <p className="card-text" style={{ fontSize: '14px', lineHeight: '80%' }}><b>the bulk of the card's content.</b></p>
-                                        </div>
-                                    </div></label>
-                                </div>
-
+                                {ruangan.map((data, i) => (
+                                    <div className="col-4  p-2">
+                                        <input type="checkbox" id={`btn-check13`}
+                                            autoComplete="off" name='ruangan1' className="btn-check" />
+                                        <label className="card btn-apisport btn-apisport-parent" htmlFor={`btn-check13`}><div>
+                                            <img src={data.foto1[0]} className="card-img-top" alt="..." />
+                                            <div className="card-body">
+                                                <p className="card-text" style={{ fontSize: '14px', lineHeight: '80%' }}><b>{data.namaruang}</b></p>
+                                                <p className="card-text" style={{ fontSize: '14px', lineHeight: '80%' }}><b>kapasitas&nbsp; {data.kapasitas}&nbsp; orang</b></p>
+                                            </div>
+                                        </div></label>
+                                    </div>
+                                ))}
                             </div>
+                            
+
                         </div>
                         <div className="col-lg-10 col-md-10 form-group mt-3">
                             <label style={{ color: "white" }}>Hiburan</label>
@@ -157,16 +156,8 @@ export default function Pesan() {
                                         </div>
                                     </div></label>
                                 </div>
-                                <div className="col-4  p-2">
-                                    <input type="checkbox" id={`btn-check13`}
-                                        autoComplete="off" name='ruangan1' className="btn-check" />
-                                    <label className="card btn-apisport btn-apisport-parent" htmlFor={`btn-check13`}><div>
-                                        <img src="./1.jpg" className="card-img-top" alt="..." />
-                                        <div className="card-body">
-                                            <p className="card-text" style={{ fontSize: '14px', lineHeight: '80%' }}><b>the bulk of the card's content.</b></p>
-                                        </div>
-                                    </div></label>
-                                </div>
+
+
 
                             </div>
                         </div>

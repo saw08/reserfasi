@@ -962,7 +962,7 @@ section {
   border: 3px solid rgba(255, 255, 255, 0.2);
 }
 .menu .menu-content {
-  margin-left: 85px;
+    margin-left: 5px;
   overflow: hidden;
   display: flex;
   justify-content: align left;
@@ -980,6 +980,7 @@ section {
 }
 
 .menu .menu-content a {
+      text-decoration: none;
   padding-right: 10px;
   background: #1a1814;
   position: relative;
@@ -1076,7 +1077,7 @@ section {
 # Events
 --------------------------------------------------------------*/
 .events {
-  background: url(../public/2.jpg) center center no-repeat;
+  background: url(/2.jpg) center center no-repeat;
   background-size: cover;
   position: relative;
 }

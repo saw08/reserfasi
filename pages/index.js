@@ -26,7 +26,7 @@ export default function Home() {
           </div>
         </section>{/* End Hero */}
         <div className=" sticky-top bg-dark">
-          <div className="text-center form-group p-3">
+          <div className="text-center form-group p-5">
             <a href='/pesan' type='btn' className='btn-rs' style={{ textDecoration: 'none', color: 'white' }}>
               <b style={{ marginTop: '3px' }}>Mulai Reservasi sekarang</b>
               <i className="fa fa-hand-o-right" style={{ fontSize: '22px', paddingLeft: '2px' }} />
