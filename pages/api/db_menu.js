@@ -53,7 +53,7 @@ async function deleteaMenu(req, res) {
         let { db } = await connectToDatabase();
         // Deleting the post
 
-        await db.collection('paket').deleteOne({
+        await db.collection('menu').deleteOne({
             '_id': convertedObjectId
         });
         // returning a message
