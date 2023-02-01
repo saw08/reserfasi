@@ -88,6 +88,17 @@ export default function TambahPaket() {
                 </div>
                 <form onSubmit={handlePost} >
                     <div className="col-lg-7 col-md-11 p-3" style={{ borderStyle: 'solid', borderColor: 'white', borderRadius: '0.8rem' }} >
+                        <div className="form-group mt-2 col-md-12">
+                            <label htmlFor="exampleFormControlSelect1">Kategori</label><i style={{ color: '#ff0000', fontSize: 'larger' }}>*</i>
+                            <select className="form-control form-select" onChange={(e) => setKategori(e.target.value)} required>
+                                <option>--Pilih Kategri--</option>
+                                <option value={'makananutama'}>Makanan utama</option>
+                                <option value={'laukpauk'}>Lauk Pauk</option>
+                                <option value={'sayursambal'}>Sayur & Sambal</option>
+                                <option value={'minuman'}>Minuman</option>
+                                <option value={'kuesnack'}>Kue & Snack</option>
+                            </select>
+                        </div>
                         <div className="col-lg-12 col-md-12 mt-3 form-group">
                             <label style={{ color: "white" }}>Nama Menu</label>
                             <input type="text"
@@ -98,17 +109,6 @@ export default function TambahPaket() {
                                 value={namamenu}
                             />
                             <div className="validate" />
-                        </div>
-                        <div className="form-group mt-2 col-md-12">
-                            <label htmlFor="exampleFormControlSelect1">Kategori</label><i style={{ color: '#ff0000', fontSize: 'larger' }}>*</i>
-                            <select className="form-control form-select" onChange={(e) => setKategori(e.target.value)} required>
-                                <option>--Pilih Olahraga--</option>
-                                <option value={'makananutama'}>Makanan utama</option>
-                                <option value={'laukpauk'}>Lauk Pauk</option>
-                                <option value={'sayursambal'}>Sayur & Sambal</option>
-                                <option value={'minuman'}>Minuman</option>
-                                <option value={'kuesnack'}>Kue & Snack</option>
-                            </select>
                         </div>
                         <div className="col-lg-12 col-md-12 mt-3 form-group">
                             <label style={{ color: "white" }}>Harga</label>
