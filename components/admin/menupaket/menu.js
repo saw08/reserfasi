@@ -1,4 +1,6 @@
 import { useState } from 'react';
+import rupiah from '../../components/Rupiah';
+
 
 export default function TambahPaket() {
     const [namamenu, setNamamenu] = useState('');
