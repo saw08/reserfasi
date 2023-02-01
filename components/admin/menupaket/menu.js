@@ -3,6 +3,7 @@ import { useState } from 'react';
 export default function TambahPaket() {
     const [namamenu, setNamamenu] = useState('');
     const [harga, setHarga] = useState(0);
+    const [kategori, setKategori] = useState(0);
     // const [image, setImage] = useState(null);
     const [createObjectURL, setCreateObjectURL] = useState(null);
     const [error, setError] = useState('');
@@ -10,7 +11,8 @@ export default function TambahPaket() {
     const [uploading, setUploading] = useState(false)
     const clearInput = () => {
         setNamamenu('');
-        setHarga('');
+        setHarga(0);
+        setKategori('');
     }
 
     const handlePost = async (e) => {
@@ -43,7 +45,8 @@ export default function TambahPaket() {
         // post structure
         let menu = {
             namamenu,
-            harga
+            harga,
+            kategori
         };
         // save the post
         let response1 = await fetch('/api/db_menu', {
@@ -55,7 +58,8 @@ export default function TambahPaket() {
         if (data.success) {
             // reset the fields
             setNamamenu('');
-            setHarga('');
+            setHarga(0);
+            setKategori('');
             //setImage(null)
             setCreateObjectURL(null);
             // set the message
@@ -94,6 +98,17 @@ export default function TambahPaket() {
                                 value={namamenu}
                             />
                             <div className="validate" />
+                        </div>
+                        <div className="form-group mt-2 col-md-12">
+                            <label htmlFor="exampleFormControlSelect1">Kategori</label><i style={{ color: '#ff0000', fontSize: 'larger' }}>*</i>
+                            <select className="form-control form-select" onChange={(e) => setKategori(e.target.value)} required>
+                                <option>--Pilih Olahraga--</option>
+                                <option value={'makananutama'}>Makanan utama</option>
+                                <option value={'laukpauk'}>Lauk Pauk</option>
+                                <option value={'sayursambal'}>Sayur & Sambal</option>
+                                <option value={'minuman'}>Minuman</option>
+                                <option value={'kuesnack'}>Kue & Snack</option>
+                            </select>
                         </div>
                         <div className="col-lg-12 col-md-12 mt-3 form-group">
                             <label style={{ color: "white" }}>Harga</label>
