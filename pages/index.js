@@ -29,7 +29,7 @@ export default function Home() {
           <div className="text-center form-group p-5">
             <a href='/pesan' type='btn' className='btn-rs' style={{ textDecoration: 'none', color: 'white' }}>
               <b style={{ marginTop: '3px' }}>Mulai Reservasi sekarang</b>
-              <i className="fa fa-hand-o-right" style={{ fontSize: '22px', paddingLeft: '2px' }} />
+              <i className="fa fa-hand-o-right" style={{ fontSize: '22px', paddingLeft: '1px' }} />
             </a>
           </div>
         </div>

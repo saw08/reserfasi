@@ -163,7 +163,7 @@ export default function Pesan() {
                         </div>
                     </div>
                     <div className="col-lg-10 col-md-10 form-group mt-3 panel panel-default" >
-                        <label style={{ color: "white" }}>Pilih Paket/Menu</label>
+                        <label style={{ color: "white" }} onClick={{}}>Pilih Paket/Menu</label>
                         <div className="scrollmenu form-control panel-heading">
                             <a data-bs-toggle="collapse" href="#menu1"><button className="collapsed btn">PAKET</button></a>
                             <a data-bs-toggle="collapse" href="#menu2"><button className="collapsed btn">Makanan Utama</button></a>
