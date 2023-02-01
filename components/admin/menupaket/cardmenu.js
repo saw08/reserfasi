@@ -6,7 +6,7 @@ export default function Cardpesanan({ props }) {
         try {
             console.log('Try')
             // Delete post
-            await fetch('/api/db_paket', {
+            await fetch('/api/db_menu', {
                 method: 'DELETE',
                 headers: {
                     'Content-Type': 'application/json',

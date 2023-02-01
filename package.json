@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@develoka/angka-rupiah-js": "^1.0.3",
     "bootstrap": "^5.2.2",
     "cloudinary": "^1.33.0",
     "formidable": "^2.1.1",

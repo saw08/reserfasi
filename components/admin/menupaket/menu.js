@@ -89,7 +89,7 @@ export default function TambahPaket() {
                 <form onSubmit={handlePost} >
                     <div className="col-lg-7 col-md-11 p-3" style={{ borderStyle: 'solid', borderColor: 'white', borderRadius: '0.8rem' }} >
                         <div className="form-group mt-2 col-md-12">
-                            <label htmlFor="exampleFormControlSelect1">Kategori</label><i style={{ color: '#ff0000', fontSize: 'larger' }}>*</i>
+                            <label style={{ color: "white" }} htmlFor="exampleFormControlSelect1">Kategori</label><i style={{ color: '#ff0000', fontSize: 'larger' }}>*</i>
                             <select className="form-control form-select" onChange={(e) => setKategori(e.target.value)} required>
                                 <option>--Pilih Kategri--</option>
                                 <option value={'makananutama'}>Makanan utama</option>
