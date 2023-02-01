@@ -92,7 +92,7 @@ export default function TambahPaket() {
                         <div className="form-group mt-2 col-md-12">
                             <label style={{ color: "white" }} htmlFor="exampleFormControlSelect1">Kategori</label><i style={{ color: '#ff0000', fontSize: 'larger' }}>*</i>
                             <select className="form-control form-select" onChange={(e) => setKategori(e.target.value)} required>
-                                <option>--Pilih Kategri--</option>
+                                <option>--Pilih Kategori--</option>
                                 <option value={'makananutama'}>Makanan utama</option>
                                 <option value={'laukpauk'}>Lauk Pauk</option>
                                 <option value={'sayursambal'}>Sayur & Sambal</option>
