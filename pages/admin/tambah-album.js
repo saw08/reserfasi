@@ -39,7 +39,7 @@ export default function Album() {
         setError('');
         setMessage('');
         clearInput();
-        alert("Penambahan Data Sukses")
+        // alert("Penambahan Data Sukses")
         // fields check
         if (!deskripsi || !foto)
             return setError('All fields are required');
@@ -107,8 +107,16 @@ export default function Album() {
                                 <div className="validate" />
                             </div>
                             
-                            <div className="text-center col-lg-10 col-md-10 form-group mt-3 mt-5">
-                                <button className="book-a-table-btn" type="submit"  disabled={uploading === false ? (false) : (true)}>Tambah Album</button>
+                            <div className="text-center col-lg-6 col-md-10 form-group mt-3 mt-5">
+                                <button className="book-a-table-btn" type="submit" disabled={uploading === false ? (false) : (true)}>Tambah Album</button>
+                                <div className="text-center col-lg-6 col-md-10">
+                                {uploading &&
+                                    <>
+                                        <div className="lds-ellipsis"><div /><div /><div />
+                                        </div>
+                                    </>
+                                    }
+                                </div>
                             </div>
                         </div>
 

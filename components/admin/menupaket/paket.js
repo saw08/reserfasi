@@ -49,7 +49,7 @@ export default function TambahPaket() {
         setError('');
         setMessage('');
         clearInput();
-        alert("Penambahan Data Sukses")
+        // alert("Penambahan Data Sukses")
         // fields check
         if (!subpaket || !namapaket || !harga || !foto)
             return setError('isi semua data');
@@ -114,7 +114,7 @@ export default function TambahPaket() {
     const removeItemArrayGambar = (data) => {
         var index = foto.indexOf(data)
         if (index >= 0) {
-            if (foto1.length === 0) {
+            if (foto.length === 0) {
                 setFoto([])
                 setImage([])
                 setCreateObjectURL([])
@@ -130,8 +130,8 @@ export default function TambahPaket() {
         <section id="events" className="events">
             <div className="container " >
                 <div className="section-title mt-4">
-                    <h2>psket</h2>
-                    <p>Tambah data Paket</p>
+                    <h2>Paket</h2>
+                    <p>Tambah Data Paket</p>
                 </div>
                 <form onSubmit={handlePost} >
                     <div className="col-lg-7 col-md-11 p-3" style={{ borderStyle: 'solid', borderColor: 'white', borderRadius: '0.8rem' }} >
@@ -164,8 +164,8 @@ export default function TambahPaket() {
                             )}
                         </div>
                         <div className="col-lg-12 col-md-12 form-group mt-3">
-                            <label style={{ color: "white" }}>Foto Paket(dapat di isi 3 foto)</label>
-                            <input type="file" className="form-control" name="myImage" onChange={uploadToClient} />
+                            <label style={{ color: "white" }}>Pilih Foto Paket(dapat di isi 3 foto)</label>
+                            <input type="file" id="files" className="form-control" name="myImage" style={{ content: 'Select some files' }} onChange={uploadToClient} />
                         </div>
                         <div className="col-lg-12 col-md-12 mt-3 form-group">
                             <label style={{ color: "white" }}>Nama Paket</label>
@@ -179,7 +179,7 @@ export default function TambahPaket() {
                             <div className="validate" />
                         </div>
                         <div className="row col-lg-12 col-md-12 mt-3 form-group">
-                            <label style={{ color: "white" }}>Nama Hiburan</label>
+                            <label style={{ color: "white" }}>Sub Menu Paket</label>
                             <div className="col-lg-10 col-md-10 ">
                                 <input type="text" className="form-control"
                                     id="subtemp"
@@ -195,11 +195,11 @@ export default function TambahPaket() {
 
                         </div>
                         <div className="mt-3 col-md-12 col-lg-12 form-group">
-                            <label style={{ color: "white" }} className="labels">Daftar Sub Hiburan</label>
+                            <label style={{ color: "white" }} className="labels">Daftar Sub Menu Paket</label>
                         </div>
                         <div className='row col-lg-12 col-md-12 mt-3 form-group'>
                             {subpaket.length === 0 ? (
-                                <label style={{ color: "white" }}>Isi Sub Hiburan</label>
+                                <label style={{ color: "#cda45e" }}>Isi sub paket!</label>
                             ) : (
                                 <>
 
@@ -220,7 +220,7 @@ export default function TambahPaket() {
                             )}
 
                         </div>
-                        <div className="col-lg-12 col-md-12 mt-3 form-group">
+                        <div className="col-lg-12 col-md-12 mt-3 mb-2 form-group">
                             <label style={{ color: "white" }}>Harga</label>
                             <input type="number"
                                 id="harga"
@@ -235,6 +235,14 @@ export default function TambahPaket() {
                         </div>
                         <div className="text-center col-lg-12 col-md-12 form-group mt-5 my-5">
                             <button className="book-a-table-btn" type="submit">Tambah Paket</button>
+                            <div className="text-center col-lg-12 col-md-12">
+                                {uploading &&
+                                    <>
+                                        <div className="lds-ellipsis"><div /><div /><div />
+                                        </div>
+                                    </>
+                                }
+                            </div>
                         </div>
                     </div>
 

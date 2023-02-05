@@ -13,14 +13,7 @@ export default function Tambahruang() {
     const [error, setError] = useState('');
     const [message, setMessage] = useState('');
     const [uploading, setUploading] = useState(false)
-    const clearInput = () => {
-        setNamaruang('');
-        setKapasitas('');
-        setKategori('');
-        setDeskripsi('');
-        setFoto([]);
-        setUploading(false)
-    }
+   
 
     const handlePost = async (e) => {
         e.preventDefault();
@@ -29,7 +22,6 @@ export default function Tambahruang() {
         //Uploading
         const body = new FormData();
         let foto1 = []
-
         //console.log("file", image)
         for (let i = 0; i < image.length; i++) {
             await body.append("file", image[i]);
@@ -51,7 +43,6 @@ export default function Tambahruang() {
         setError('');
         setMessage('');
         clearInput();
-        alert("Penambahan Data Sukses")
         // fields check
         if (!deskripsi || !kategori || !namaruang || !kapasitas || !foto1)
             return setError('isi semua data');
@@ -114,7 +105,14 @@ export default function Tambahruang() {
             }
         }
     }
-
+    const clearInput = () => {
+        setNamaruang('');
+        setKapasitas('');
+        setKategori('');
+        setDeskripsi('');
+        setFoto([]);
+        setUploading(false)
+    }
     return (
         <>
             <section id="events" className="events">
@@ -202,9 +200,14 @@ export default function Tambahruang() {
                             </div>
 
                             <div className="text-center col-lg-6 col-md-10 form-group mt-3 mt-5">
-                                <button className="book-a-table-btn" type="submit"  disabled={uploading === false ? (false) : (true)}>Tambah Ruangan</button>
+                                <button className="book-a-table-btn" type="submit" disabled={uploading === false ? (false) : (true)}>Tambah Ruangan</button>
+                                {uploading &&
+                                    <>
+                                        <div className="lds-ellipsis"><div /><div /><div />
+                                        </div>
+                                    </>
+                                }
                             </div>
-
                         </div>
 
                     </form>

@@ -1,4 +1,6 @@
 import { useState } from 'react';
+import MapHiburan from '../../components/admin/hiburan/hiburan'
+
 
 export default function Tambahhiburan() {
     const [namahiburan, setNamahiburan] = useState('');
@@ -50,7 +52,7 @@ export default function Tambahhiburan() {
         setError('');
         setMessage('');
         clearInput();
-        alert("Penambahan Data Sukses")
+        // alert("Penambahan Data Sukses")
         // fields check
         if (!deskripsi || !subhiburan || !namahiburan || !harga || !foto)
             return setError('isi semua data');
@@ -184,36 +186,43 @@ export default function Tambahhiburan() {
                                 />
                                 <div className="validate" />
                             </div>
-                            <div className=" col-lg-6 col-md-10 mt-3 form-group">
-                                <label style={{ color: "white" }}>Nama Hiburan</label>
-                                <div className="btn-grup ">
+                            <div className="row col-lg-6 col-md-10 mt-3 form-group">
+                                <label style={{ color: "white" }}>Sub Paket</label>
+                                <div className="col-lg-10 col-md-10 ">
                                     <input type="text" className="form-control"
                                         id="subtemp"
                                         name="subtemp"
                                         value={subtemp}
                                         onChange={(e) => setSubtemp(e.target.value)}
                                     />
+                                </div>
+                                <div className="col-lg-2 col-md-2 ">
                                     <button className="form-control" type='button' onClick={() => onAddItemArray()}>
                                         <i className="fa fa-plus"></i></button>
                                 </div>
 
                             </div>
-                            <div className="mt-3 col-md-12"><label className="labels">Daftar Sub Hiburan</label>
+                            <div className="mt-3 col-md-10 col-lg-6 form-group">
+                                <label style={{ color: "white" }} className="labels">Daftar Sub Hiburan</label>
                             </div>
-                            <div>
+                            <div className='row col-lg-6 col-md-10 mt-3 form-group'>
                                 {subhiburan.length === 0 ? (
-                                    <h6>Isi Sub Hiburan</h6>
+                                    <label style={{ color: "white" }}>Isi Sub Hiburan</label>
                                 ) : (
                                     <>
 
-                                        {subhiburan.map((data, i) => (
-                                            <div className="btn-group col-md-12">
-                                                <input type="text" id={i} className="form-control col-10 mt-2 col-md-10" value={data} readOnly />
-                                                <button className="form-control col-2 mt-2 col-sm-2" type='button'
-                                                    onClick={() => removeItemArray(data)}
-                                                >
-                                                    <i className="fa fa-trash"></i></button>
-                                            </div>
+                                            {subhiburan.map((data, i) => (
+                                            <>
+                                                <div className="col-md-10 col-md-10">
+                                                    <input type="text" id={i} className="form-control col-10 mt-2 col-md-10" value={data} readOnly />
+                                                </div>
+                                                <div className='col-lg-2 col-md-2'>
+                                                    <button className="form-control col-2 mt-2 col-sm-2" type='button'
+                                                        onClick={() => removeItemArray(data)}
+                                                    >
+                                                        <i className="fa fa-trash"></i></button>
+                                                </div>
+                                            </>
                                         ))}
                                     </>
                                 )}
@@ -245,57 +254,20 @@ export default function Tambahhiburan() {
                             </div>
                             <div className="text-center col-lg-6 col-md-10 form-group mt-5">
                                 <button className="book-a-table-btn" type="submit">Tambah Hiburan</button>
+                                {uploading &&
+                                    <>
+                                        <div className="lds-ellipsis"><div /><div /><div />
+                                        </div>
+                                    </>
+                                }
                             </div>
                         </div>
 
                     </form>
                 </div>
             </section>
-            <section className="section-bg">
-                <div className="container" >
-                    <div className="section-title text-center">
-                        <p style={{ fontSize: '28px' }}>ruangan</p>
-                    </div>
-                    <div className="row text-white">
-                        <div className="col-lg-4">
-                            <a style={{ textDecoration: 'none', color: 'white' }} href="../../pesan" >
-                                <div className="gallery-item">
-                                    <img src="../1.jpg" alt className="img-fluid" />
-                                </div>
-                                <div className="box ">
-                                    <span>01</span>
-                                    <h4>Ruangan</h4>
-                                    <p>Ulamco laboris nisi ut aliquip ex ea commodo consequat. Et consectetur ducimus vero placeat</p>
-                                </div>
-                            </a>
-                        </div>
-                        <div className="col-lg-4 mt-4 mt-lg-0">
-                            <a style={{ textDecoration: 'none', color: 'white' }} href="../../pesan">
-                                <div className="gallery-item">
-                                    <img src="../1.jpg" alt className="img-fluid" />
-                                </div>
-                                <div className="box" >
-                                    <span>02</span>
-                                    <h4>Ruangan</h4>
-                                    <p>Dolorem est fugiat occaecati voluptate velit esse. Dicta veritatis dolor quod et vel dire leno para dest</p>
-                                </div>
-                            </a>
-                        </div>
-                        <div className="col-lg-4 mt-4 mt-lg-0">
-                            <a style={{ textDecoration: 'none', color: 'white' }} href="../../pesan">
-                                <div className="gallery-item">
-                                    <img src="../1.jpg" alt className="img-fluid" />
-                                </div>
-                                <div className="box" >
-                                    <span>03</span>
-                                    <h4> Ruangan</h4>
-                                    <p>Molestiae officiis omnis illo asperiores. Aut doloribus vitae sunt debitis quo vel nam quis</p>
-                                </div>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </section>
+            <MapHiburan />
+
         </>
     )
 }

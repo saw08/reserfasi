@@ -39,7 +39,7 @@ export default function TambahPaket() {
         setError('');
         setMessage('');
         clearInput();
-        alert("Penambahan Data Sukses")
+        // alert("Penambahan Data Sukses")
         // fields check
         if (!namamenu || !harga)
             return setError('All fields are required');
@@ -85,7 +85,7 @@ export default function TambahPaket() {
         <section id="events" className="events">
             <div className="container " >
                 <div className="section-title">
-                    <p>Tambah data menu</p>
+                    <p>Tambah Data Menu</p>
                 </div>
                 <form onSubmit={handlePost} >
                     <div className="col-lg-7 col-md-11 p-3" style={{ borderStyle: 'solid', borderColor: 'white', borderRadius: '0.8rem' }} >
@@ -125,7 +125,15 @@ export default function TambahPaket() {
                             <div className="validate" />
                         </div>
                         <div className="text-center col-lg-12 col-md-12 form-group mt-5 my-5">
-                            <button className="book-a-table-btn" type="submit">Tambah Paket</button>
+                            <button className="book-a-table-btn" type="submit">Tambah menu</button>
+                            <div className="text-center col-lg-12 col-md-12">
+                                {uploading &&
+                                    <>
+                                        <div className="lds-ellipsis"><div /><div /><div />
+                                        </div>
+                                    </>
+                                }
+                            </div>
                         </div>
                     </div>
 

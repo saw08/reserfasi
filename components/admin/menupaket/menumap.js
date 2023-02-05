@@ -21,7 +21,7 @@ export default function Menumap() {
             <div className="container" data-aos="fade-up">
                 <div className="section-title">
                     <h2>Menu</h2>
-                    <p>Check Our Tasty Menu</p>
+                    <p>Daftar Menu</p>
                 </div>
                 <div className="row col-lg-12 menu-container">
                     {menu.length === 0 ? (

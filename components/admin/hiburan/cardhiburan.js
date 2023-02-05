@@ -1,12 +1,12 @@
 import { useState } from 'react';
 export default function Cardpesanan({ props }) {
-    let namaHasil = props.namapaket.split(" ").join("");
+    let namaHasil = props.namahiburan.split(" ").join("");
 
-    const deleteAlbum = async () => {
+    const deleteHiburan = async () => {
         try {
             console.log('Try')
             // Delete post
-            await fetch('/api/db_paket', {
+            await fetch('/api/db_hiburan', {
                 method: 'DELETE',
                 headers: {
                     'Content-Type': 'application/json',
@@ -17,13 +17,13 @@ export default function Cardpesanan({ props }) {
             });
             // reset the deleting state
             // reload the page
-            alert('Paket Terhapus')
+            alert('Album Terhapus')
         } catch (error) {
             // stop deleting state
         }
     };
     return (
-        <div className="col-lg-4 menu-item filter-starters bordermenu">
+        <div className="col-lg-4 menu-item filter-starters bordermenu" style={{ borderStyle: 'solid', borderColor: 'GrayText', borderRadius: '8px' }}>
             <div id={`${namaHasil}`} className="carousel slide" data-bs-ride="carousel">
                 <div className="carousel-inner mt-2">
                     {props.foto.map((data, i) => (
@@ -55,22 +55,23 @@ export default function Cardpesanan({ props }) {
                 ))}
             </div>
             <div className="menu-content">
-                <span>{props.namapaket}</span>
+                <span>{props.namahiburan}<a style={{ color: '#cda45e', marginLeft: '4px' }}>Rp.{props.harga}</a></span>
             </div>
             <div>
+                <span>{props.deskripsi}</span>
                 <ul>
-                    {props.subpaket.map((data, i) => (
+                    {props.subhiburan.map((data, i) => (
                         <>
-                            <li style={{color:"wheat"}}>{data}</li>
+                            <li style={{ color: "wheat" }}>{data}</li>
 
                         </>
-                    ))}                    
+                    ))}
                 </ul>
             </div>
 
             <div>
                 <button type="button"
-                    onClick={() => deleteAlbum()}
+                    onClick={() => deleteHiburan()}
                     className="btn btn-outline-secondary my-3" >
                     HAPUS
                 </button>
