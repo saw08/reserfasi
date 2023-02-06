@@ -17,6 +17,7 @@ export default function TambahPaket() {
         setPakettemp('');
         setHarga('');
         setFoto([]);
+        setImage([]);
         setUploading(false)
     }
 
@@ -165,7 +166,7 @@ export default function TambahPaket() {
                         </div>
                         <div className="col-lg-12 col-md-12 form-group mt-3">
                             <label style={{ color: "white" }}>Pilih Foto Paket(dapat di isi 3 foto)</label>
-                            <input type="file" id="files" className="form-control" name="myImage" style={{ content: 'Select some files' }} onChange={uploadToClient} />
+                            <input type="file" id="files"  className="form-control" name="myImage" style={{ content: 'Select some files' }} onChange={uploadToClient} />
                         </div>
                         <div className="col-lg-12 col-md-12 mt-3 form-group">
                             <label style={{ color: "white" }}>Nama Paket</label>

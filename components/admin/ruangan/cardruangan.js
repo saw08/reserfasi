@@ -1,6 +1,7 @@
-//@ts-check
 import { useState } from 'react';
 import { useRouter } from 'next/router';
+import Link from 'next/link';
+
 
 export default function Cardruangan({ props }) {
     const [deleting, setDeleting] = useState(false);
@@ -67,13 +68,28 @@ export default function Cardruangan({ props }) {
                 <span>{props.i}</span>
                 <h4>{props.namaruang}</h4>
                 <h5>kapasitas{props.kapasitas}orang</h5>
-                <p>{props.deskripsi}</p>
+                    <p>kategori :{props.kategori}</p>
+                    <p>{props.deskripsi}</p>
                 </div>
                 <button type="button"
                     onClick={() => deleteRuang()}
                     className="btn btn-outline-secondary mx-3" >
                     HAPUS
                 </button>
+                <Link href={{
+                    pathname: '/edit-ruangan',
+                    query: {
+                        namaruang: props.namaruang,
+                        kapasitas: props.kapasitas,
+                        foto1: JSON.stringify(props.foto1),
+                        kategori: props.kategori,
+                        deskripsi: props.deskripsi,
+                        objectId: props._id
+                    }
+
+                }}>
+                    <a className='btn btn-outline-secondary mx-3' href='/edit-ruangan'>Edit Profil</a>
+                </Link>
             </div>
         </div>
     )

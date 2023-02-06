@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import Image from 'next/image';
 export default function Cardpesanan({ props }) {
     let namaHasil = props.namapaket.split(" ").join("");
 
@@ -30,10 +31,10 @@ export default function Cardpesanan({ props }) {
                         <>
                             {i == 0 ?
                                 (<div className="carousel-item active">
-                                    <img src={`${data}`} className="d-block rounded  w-100" alt="..." />
+                                    <img src={`${data}`} className="d-block rounded  w-100" height={300} style={{ objectFit: "cover" }} />
                                 </div>) :
                                 (<div className="carousel-item">
-                                    <img src={`${data}`} className="d-block rounded  w-100" alt="..." />
+                                    <img src={`${data}`} className="d-block rounded  w-100" height={300} style={{ objectFit: "cover" }} />
                                 </div>)}
                         </>
                     ))}
