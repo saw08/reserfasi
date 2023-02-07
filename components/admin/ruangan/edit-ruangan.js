@@ -18,6 +18,8 @@ export default function Editruangan() {
     const [_kapasitas, setKapasitas] = useState('');
     const [_deskripsi, setDeskripsi] = useState('');
     const [_foto1, setFoto] = useState([]);
+    const [_gambarNew, setGambarNew] = useState([]);
+
 
     //Set All
     useEffect(() => {
@@ -44,23 +46,6 @@ export default function Editruangan() {
         deskripsi,
         objectId])
 
-    const onAddItemArray = () => {
-        setTim(_tim => [..._tim, timTemp]);
-        setTimTemp('')
-        console.log(_tim)
-
-    };
-
-    const removeItemArray = (data) => {
-        var index = _tim.indexOf(data)
-        if (index >= 0) {
-            if (_tim.length === 0) {
-                setTim([])
-            } else {
-                setTim(_tim => [..._tim.slice(0, index), ..._tim.slice(index + 1)])
-            }
-        }
-    };
     //UPDATE
     const handlePost = async (e) => {
         e.preventDefault();
@@ -87,10 +72,10 @@ export default function Editruangan() {
             // console.log('Secure URL Array')
             // console.log(imageUrl)
         }
-        for (let i = 0; i < _gambar.length; i++) {
-            imageUrl.push(_gambar[i])
+        for (let i = 0; i < _foto1.length; i++) {
+            imageUrl.push(_foto1[i])
         }
-        setGambar(Object.assign(_gambar, imageUrl))
+        setGambar(Object.assign(_foto1, imageUrl))
         //Uploading
         if (imageUrl.length != 0) {
             setUploading(false)
@@ -98,15 +83,17 @@ export default function Editruangan() {
         // fields check
         try {
             // Update post
-            await fetch('/api/profildb', {
+            await fetch('/api/db_ruangan', {
                 method: 'PUT',
                 headers: {
                     'Content-Type': 'application/json',
                 },
                 body: JSON.stringify({
-                    nama: _nama,
-                    noWa: _noWa,
-                    tim: _tim,
+                    namaruang: _namaruang,
+                    kapasitas: _kapasitas,
+                    foto1: _foto1,
+                    kategori: _kategori,
+                    deskripsi: _deskripsi,
                     objectId: objectId,
                 }),
             });
@@ -118,6 +105,57 @@ export default function Editruangan() {
             console.log('Not Working')
         }
     };
+    const uploadToClient = (event) => {
+        if (event.target.files && event.target.files[0]) {
+            var x = document.getElementById("image");
+            const i = event.target.files[0];
+            setGambarNew(array => [...array, i.name])
+            setImage(array => [...array, i]);
+            setCreateObjectURL(array => [...array, URL.createObjectURL(i)]);
+        }
+        console.log('Upload to Client')
+        console.log(_gambarNew)
+        console.log(image)
+        console.log(createObjectURL)
+    };
+
+
+    const gabungGambar = () => {
+        let gambarGabung = _foto1.concat(_gambarNew)
+        setGambar(Object.assign(_foto1, gambarGabung))
+        console.log('Gambar New:')
+        console.log(_gambarNew)
+        console.log('Gambar Sudah Di Push Variabel:')
+        console.log(gambarGabung)
+        console.log('Gambar Sudah Di Push:')
+        console.log(_foto1)
+    }
+
+    const removeItemArrayGambar = (data) => {
+        var index = _foto1.indexOf(data)
+        if (index >= 0) {
+            if (_foto1.length === 0) {
+                setGambar([])
+            } else {
+                setGambar(array => [...array.slice(0, index), ...array.slice(index + 1)])
+            }
+        }
+    }
+
+    const removeItemArrayGambarNew = (data) => {
+        var index = _gambarNew.indexOf(data)
+        if (index >= 0) {
+            if (_gambarNew.length === 0) {
+                setGambarNew([])
+                setImage([])
+                setCreateObjectURL([])
+            } else {
+                setGambarNew(array => [...array.slice(0, index), ...array.slice(index + 1)])
+                setImage(array => [...array.slice(0, index), ...array.slice(index + 1)])
+                setCreateObjectURL(array => [...array.slice(0, index), ...array.slice(index + 1)])
+            }
+        }
+    }
     return (
         <>
             <section id="events" className="events">
@@ -128,12 +166,12 @@ export default function Editruangan() {
                     <form onSubmit={handlePost} >
                         <div className=" col-lg-12">
                             <div className="mt-2 col-lg-6 col-md-10">
-                                {foto1.length === 0 ? (
+                                {_foto1.length === 0 ? (
                                     <h4>Daftar Foto</h4>
                                 ) : (
                                     <>
 
-                                        {foto1.map((data, i) => (
+                                        {_foto1.map((data, i) => (
                                             <>
                                                 <div className='cols-2 mt-3 mb-3 row row-cols-2'>
                                                     <div className='col-10 col-md-10'>
@@ -151,6 +189,31 @@ export default function Editruangan() {
                                             </>
 
 
+                                        ))}
+                                    </>
+                                )}
+                                {_gambarNew.length === 0 ? (
+                                    <></>
+                                ) : (
+                                    <>
+
+                                        {_gambarNew.map((data, i) => (
+
+                                            <>
+                                                <div className='cols-2 mt-3 mb-3 row row-cols-2'>
+                                                    <div className='col-10 col-md-10'>
+                                                        <img id='image' className='img-fluid d-block border border-dark' width={300} height={300} src={createObjectURL[i]} />
+                                                    </div>
+                                                    <div className='col-10 col-md-2'>
+                                                        <button className="form-control"
+                                                            type='button'
+                                                            onClick={() => removeItemArrayGambarNew(data)}
+                                                        >
+                                                            <i className="fa fa-trash"></i></button>
+                                                    </div>
+
+                                                </div>
+                                            </>
                                         ))}
                                     </>
                                 )}
@@ -174,7 +237,7 @@ export default function Editruangan() {
                                     className="form-control"
                                     placeholder="Nama ruangan"
                                     onChange={(e) => setNamaruang(e.target.value)}
-                                    value={namaruang}
+                                    value={_namaruang}
                                 />
                                 <div className="validate" />
 
@@ -186,7 +249,7 @@ export default function Editruangan() {
                                     className="form-control"
                                     placeholder="kapasitas"
                                     onChange={(e) => setKapasitas(e.target.value)}
-                                    value={kapasitas}
+                                    value={_kapasitas}
                                 />
                                 <div className="validate" />
 
@@ -198,7 +261,7 @@ export default function Editruangan() {
                                     className="form-control"
                                     placeholder="deskripsi"
                                     onChange={(e) => setDeskripsi(e.target.value)}
-                                    value={deskripsi}
+                                    value={_deskripsi}
                                 />
                                 <div className="validate" />
 
