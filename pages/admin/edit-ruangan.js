@@ -52,6 +52,43 @@ export default function Editruangan() {
         objectId])
 
     //UPDATE
+    
+    const uploadToClient = (event) => {
+        if (event.target.files && event.target.files[0]) {
+            var x = document.getElementById("image");
+            const i = event.target.files[0];
+            setGambarNew(array => [...array, i.name])
+            setFoto(array => [...array, i]);
+            setCreateObjectURL(array => [...array, URL.createObjectURL(i)]);
+        }
+    };
+
+
+    const removeItemArrayGambar = (data) => {
+        var index = _foto1.indexOf(data)
+        if (index >= 0) {
+            if (_foto1.length === 0) {
+                setFoto([])
+            } else {
+                setFoto(array => [...array.slice(0, index), ...array.slice(index + 1)])
+            }
+        }
+    }
+
+    const removeItemArrayGambarNew = (data) => {
+        var index = _gambarNew.indexOf(data)
+        if (index >= 0) {
+            if (_gambarNew.length === 0) {
+                setGambarNew([])
+                setFoto([])
+                setCreateObjectURL([])
+            } else {
+                setGambarNew(array => [...array.slice(0, index), ...array.slice(index + 1)])
+                setFoto(array => [...array.slice(0, index), ...array.slice(index + 1)])
+                setCreateObjectURL(array => [...array.slice(0, index), ...array.slice(index + 1)])
+            }
+        }
+    }
     const handlePost = async (e) => {
         e.preventDefault();
         setUploading(true)
@@ -71,7 +108,7 @@ export default function Editruangan() {
             // await console.log(response)
             // await console.log('Secure URL')
             // await console.log(response.secure_url)
-            imageUrl.push(response.secure_url)
+            foto1.push(response.secure_url)
 
             // console.log('Secure URL Array')
             // console.log(imageUrl)
@@ -106,44 +143,8 @@ export default function Editruangan() {
             router.push('/admin/tambah-ruang');
         } catch (error) {
             // Stop publishing state
-            }
-    };
-    const uploadToClient = (event) => {
-        if (event.target.files && event.target.files[0]) {
-            var x = document.getElementById("image");
-            const i = event.target.files[0];
-            setGambarNew(array => [...array, i.name])
-            setImage(array => [...array, i]);
-            setCreateObjectURL(array => [...array, URL.createObjectURL(i)]);
         }
     };
-
-
-    const removeItemArrayGambar = (data) => {
-        var index = _foto1.indexOf(data)
-        if (index >= 0) {
-            if (_foto1.length === 0) {
-                setGambar([])
-            } else {
-                setGambar(array => [...array.slice(0, index), ...array.slice(index + 1)])
-            }
-        }
-    }
-
-    const removeItemArrayGambarNew = (data) => {
-        var index = _gambarNew.indexOf(data)
-        if (index >= 0) {
-            if (_gambarNew.length === 0) {
-                setGambarNew([])
-                setImage([])
-                setCreateObjectURL([])
-            } else {
-                setGambarNew(array => [...array.slice(0, index), ...array.slice(index + 1)])
-                setImage(array => [...array.slice(0, index), ...array.slice(index + 1)])
-                setCreateObjectURL(array => [...array.slice(0, index), ...array.slice(index + 1)])
-            }
-        }
-    }
     return (
         <>
             <section id="events" className="events">
@@ -166,7 +167,7 @@ export default function Editruangan() {
                                                         <img id='image' className='img-fluid d-block border border-dark' width={300} height={300} src={`${data}`} />
                                                     </div>
                                                     <div className='col-10 col-md-2'>
-                                                        <button className="form-control"
+                                                        <button className="form-control" type='button'
                                                             onClick={() => removeItemArrayGambar(data)}
                                                         >
                                                             <i className="fa fa-trash"></i></button>

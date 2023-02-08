@@ -75,6 +75,17 @@ export default function Cardpesanan({ props }) {
                     className="btn btn-outline-secondary my-3" >
                     HAPUS
                 </button>
+                <Link className="btn btn-outline-secondary mb-2" href={{
+                    pathname: './edit-paket',
+                    query: {
+                        namapaket: props.namapaket,
+                        harga: props.harga,
+                        subpaket: JSON.stringify(props.subpaket),
+                        foto: JSON.stringify(props.foto),
+                        objectId: props._id
+                    }
+
+                }}></Link>
             </div>
         </div>
 

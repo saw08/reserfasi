@@ -136,6 +136,7 @@ export default function Tambahruang() {
                                                     </div>
                                                     <div className='col-10 col-md-2'>
                                                         <button className="form-control"
+                                                            type='button'
                                                             onClick={() => removeItemArrayGambar(data)}
                                                         >
                                                             <i className="fa fa-trash"></i></button>
