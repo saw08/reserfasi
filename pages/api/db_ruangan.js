@@ -61,7 +61,7 @@ async function updateRuangan(req, res) {
         // connect to the database
         let { db } = await connectToDatabase();
         // update the published status of the post
-        await db.collection('user').updateOne(
+        await db.collection('ruangan').updateOne(
             {
                 '_id': convertedObjectId
             },

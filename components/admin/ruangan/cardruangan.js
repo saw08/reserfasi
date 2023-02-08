@@ -73,11 +73,11 @@ export default function Cardruangan({ props }) {
                 </div>
                 <button type="button"
                     onClick={() => deleteRuang()}
-                    className="btn btn-outline-secondary mx-3" >
+                    className="btn btn-outline-secondary mb-2" >
                     HAPUS
                 </button>
-                <Link href={{
-                    pathname: '/edit-ruangan',
+                <Link className="btn btn-outline-secondary mb-2" href={{
+                    pathname: './edit-ruangan',
                     query: {
                         namaruang: props.namaruang,
                         kapasitas: props.kapasitas,
@@ -88,7 +88,7 @@ export default function Cardruangan({ props }) {
                     }
 
                 }}>
-                    <a className='btn btn-outline-secondary mx-3' href='/edit-ruangan'>Edit Profil</a>
+                    Edit
                 </Link>
             </div>
         </div>

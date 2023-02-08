@@ -10,6 +10,7 @@ export default function Editruangan() {
         foto1,
         kategori,
         deskripsi,
+        objectId
     } = router.query
 
     //State of Art
@@ -19,25 +20,29 @@ export default function Editruangan() {
     const [_deskripsi, setDeskripsi] = useState('');
     const [_foto1, setFoto] = useState([]);
     const [_gambarNew, setGambarNew] = useState([]);
+    const [createObjectURL, setCreateObjectURL] = useState([]);
+    const [uploading, setUploading] = useState(false)
+
+
 
 
     //Set All
     useEffect(() => {
         if (typeof namaruang == 'string') {
-            setNama(namaruang)
+            setNamaruang(namaruang)
 
         }
         if (typeof kapasitas == 'string') {
-            setNoWa(kapasitas)
+            setKapasitas(kapasitas)
         }
         if (typeof kategori == 'string') {
-            setNoWa(kategori)
+            setKategori(kategori)
         }
         if (typeof deskripsi == 'string') {
-            setNoWa(deskripsi)
+            setDeskripsi(deskripsi)
         }
         if (typeof foto1 == 'string') {
-            setTim(Object.assign(_tim, JSON.parse(foto1)))
+            setFoto(Object.assign(_foto1, JSON.parse(foto1)))
         }
     }, [namaruang,
         kapasitas,
@@ -49,7 +54,6 @@ export default function Editruangan() {
     //UPDATE
     const handlePost = async (e) => {
         e.preventDefault();
-        setCheck();
         setUploading(true)
 
         //Cloudinary Update
@@ -75,7 +79,7 @@ export default function Editruangan() {
         for (let i = 0; i < _foto1.length; i++) {
             imageUrl.push(_foto1[i])
         }
-        setGambar(Object.assign(_foto1, imageUrl))
+        setFoto(Object.assign(_foto1, imageUrl))
         //Uploading
         if (imageUrl.length != 0) {
             setUploading(false)
@@ -99,11 +103,10 @@ export default function Editruangan() {
             });
             // reload the page
             alert('ruangan sukses diupdate')
-            router.push('/tambah-ruang');
+            router.push('/admin/tambah-ruang');
         } catch (error) {
             // Stop publishing state
-            console.log('Not Working')
-        }
+            }
     };
     const uploadToClient = (event) => {
         if (event.target.files && event.target.files[0]) {
@@ -113,23 +116,8 @@ export default function Editruangan() {
             setImage(array => [...array, i]);
             setCreateObjectURL(array => [...array, URL.createObjectURL(i)]);
         }
-        console.log('Upload to Client')
-        console.log(_gambarNew)
-        console.log(image)
-        console.log(createObjectURL)
     };
 
-
-    const gabungGambar = () => {
-        let gambarGabung = _foto1.concat(_gambarNew)
-        setGambar(Object.assign(_foto1, gambarGabung))
-        console.log('Gambar New:')
-        console.log(_gambarNew)
-        console.log('Gambar Sudah Di Push Variabel:')
-        console.log(gambarGabung)
-        console.log('Gambar Sudah Di Push:')
-        console.log(_foto1)
-    }
 
     const removeItemArrayGambar = (data) => {
         var index = _foto1.indexOf(data)
@@ -175,7 +163,7 @@ export default function Editruangan() {
                                             <>
                                                 <div className='cols-2 mt-3 mb-3 row row-cols-2'>
                                                     <div className='col-10 col-md-10'>
-                                                        <img id='image' className='img-fluid d-block border border-dark' width={300} height={300} src={createObjectURL[i]} />
+                                                        <img id='image' className='img-fluid d-block border border-dark' width={300} height={300} src={`${data}`} />
                                                     </div>
                                                     <div className='col-10 col-md-2'>
                                                         <button className="form-control"
@@ -224,7 +212,7 @@ export default function Editruangan() {
                             </div>
                             <div className="col-lg-6 col-md-10 form-group mt-3">
                                 <label style={{ color: "white" }}>Kategori</label>
-                                <select className="form-control form-select" onChange={(e) => setKategori(e.target.value)} required>
+                                <select className="form-control form-select" value={_kategori} onChange={(e) => setKategori(e.target.value)} required>
                                     <option>--Pilih Kategori--</option>
                                     <option value={'ruangan'}>Ruangan</option>
                                     <option value={'pondok'}>pondok</option>
@@ -268,20 +256,14 @@ export default function Editruangan() {
                             </div>
 
                             <div className="text-center col-lg-6 col-md-10 form-group mt-3 mt-5">
-                                <button className="book-a-table-btn" type="submit" disabled={uploading === false ? (false) : (true)}>Tambah Ruangan</button>
-                                {uploading &&
-                                    <>
-                                        <div className="lds-ellipsis"><div /><div /><div />
-                                        </div>
-                                    </>
-                                }
+                                <button className="book-a-table-btn" type="submit" >Tambah Ruangan</button>
+                                
                             </div>
                         </div>
 
                     </form>
                 </div>
             </section>
-            <Ruangan></Ruangan>
         </>
     )
 }
