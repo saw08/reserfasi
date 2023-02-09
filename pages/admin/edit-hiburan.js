@@ -2,55 +2,51 @@ import { useState } from 'react';
 import { useRouter } from 'next/router';
 import { useEffect } from 'react';
 
-export default function Editruangan() {
+export default function Tambahhiburan() {
     let router = useRouter()
     const {
-        namaruang,
-        kapasitas,
-        foto1,
-        kategori,
+        namahiburan,
+        harga,
+        subhiburan,
+        foto,
         deskripsi,
-        objectId
+        objectId,
     } = router.query
-
-    //State of Art
-    const [_namaruang, setNamaruang] = useState('');
-    const [_kategori, setKategori] = useState('');
-    const [_kapasitas, setKapasitas] = useState('');
+    const [_namahiburan, setNamahiburan] = useState('');
+    const [subtemp, setSubtemp] = useState('');
+    const [_subhiburan, setSubhiburan] = useState([]);
+    const [_harga, setHarga] = useState(0);
     const [_deskripsi, setDeskripsi] = useState('');
-    const [_foto1, setFoto] = useState([]);
+    const [_foto, setFoto] = useState([]);
     const [image, setImage] = useState([]);
-    const [_gambarNew, setGambarNew] = useState([]);
     const [createObjectURL, setCreateObjectURL] = useState([]);
     const [uploading, setUploading] = useState(false)
+    const [_gambarNew, setGambarNew] = useState([]);
 
-
-
-
-    //Set All
+    
     useEffect(() => {
-        if (typeof namaruang == 'string') {
-            setNamaruang(namaruang)
+        if (typeof namahiburan == 'string') {
+            setNamahiburan(namahiburan)
 
         }
-        if (typeof kapasitas == 'string') {
-            setKapasitas(kapasitas)
-        }
-        if (typeof kategori == 'string') {
-            setKategori(kategori)
+        if (typeof harga == 'string') {
+            setHarga(harga)
         }
         if (typeof deskripsi == 'string') {
             setDeskripsi(deskripsi)
         }
-        if (typeof foto1 == 'string') {
-            setFoto(Object.assign(_foto1, JSON.parse(foto1)))
+        if (typeof subhiburan == 'string') {
+            setSubhiburan(Object.assign(_subhiburan, JSON.parse(subhiburan)))
         }
-    }, [namaruang,
-        kapasitas,
-        foto1,
-        kategori,
+        if (typeof foto == 'string') {
+            setFoto(Object.assign(_foto, JSON.parse(foto)))
+        }
+    }, [namahiburan,
+        harga,
+        subhiburan,
+        foto,
         deskripsi,
-        objectId])
+        objectId,])
 
     //UPDATE
     const handlePost = async (e) => {
@@ -69,20 +65,12 @@ export default function Editruangan() {
                 method: "POST",
                 body
             }).then(r => r.json());
-            // await console.log(response)
-            // await console.log('Secure URL')
-            // await console.log(response.secure_url)
             imageUrl.push(response.secure_url)
-
-            // console.log('Secure URL Array')
-            // console.log(imageUrl)
         }
-        for (let i = 0; i < _foto1.length; i++) {
-            imageUrl.push(_foto1[i])
+        for (let i = 0; i < _foto.length; i++) {
+            imageUrl.push(_foto[i])
         }
-        // console.log('Image URL')
-        console.log(imageUrl)
-        setFoto(Object.assign(_foto1, imageUrl))
+        setFoto(Object.assign(_foto, imageUrl))
         //Uploading
         if (imageUrl.length != 0) {
             setUploading(false)
@@ -90,42 +78,60 @@ export default function Editruangan() {
         // fields check
         try {
             // Update post
-            await fetch('/api/db_ruangan', {
+            await fetch('/api/db_hiburan', {
                 method: 'PUT',
                 headers: {
                     'Content-Type': 'application/json',
                 },
                 body: JSON.stringify({
-                    namaruang: _namaruang,
-                    kapasitas: _kapasitas,
-                    foto1: _foto1,
-                    kategori: _kategori,
+                    namahiburan: _namahiburan,
+                    subhiburan: _subhiburan,
                     deskripsi: _deskripsi,
-                    objectId: objectId,
+                    harga: _harga,
+                    foto: _foto,
+                    objectId: objectId
                 }),
             });
             // reload the page
-            alert('ruangan sukses diupdate')
-            router.push('/admin/tambah-ruang');
+            alert('paket sukses diupdate')
+            router.push('/admin/tambah-hiburan');
         } catch (error) {
             // Stop publishing state
         }
     };
+    const onAddItemArray = () => {
+        setSubhiburan(_subhiburan => [..._subhiburan, subtemp]);
+        setSubtemp('')
+
+    };
+    const removeItemArray = (data) => {
+        var index = _subhiburan.indexOf(data)
+        if (index >= 0) {
+            if (_subhiburan.length === 0) {
+                setSubhiburan([])
+            } else {
+                setSubhiburan(tim => [...tim.slice(0, index), ...tim.slice(index + 1)])
+            }
+        }
+
+
+    };
     const uploadToClient = (event) => {
         if (event.target.files && event.target.files[0]) {
+            const i = event.target.files[0];
             var x = document.getElementById("image");
 
-            const i = event.target.files[0];
             setGambarNew(array => [...array, i.name])
             setImage(array => [...array, i]);
             setCreateObjectURL(array => [...array, URL.createObjectURL(i)]);
         }
     };
 
+
     const removeItemArrayGambar = (data) => {
-        var index = _foto1.indexOf(data)
+        var index = _foto.indexOf(data)
         if (index >= 0) {
-            if (_foto1.length === 0) {
+            if (_foto.length === 0) {
                 setFoto([])
             } else {
                 setFoto(array => [...array.slice(0, index), ...array.slice(index + 1)])
@@ -150,20 +156,22 @@ export default function Editruangan() {
     
     return (
         <>
+
             <section id="events" className="events">
                 <div className="container" >
                     <div className="section-title">
-                        <h2>Edit Data Ruang</h2>
+                        <h2>Reservation</h2>
+                        <p>Lengkapi Data Reserfasi</p>
                     </div>
                     <form onSubmit={handlePost} >
-                        <div className=" col-lg-12">
+                        <div className="col-lg-12">
                             <div className="mt-2 col-lg-6 col-md-10">
-                                {_foto1.length === 0 ? (
+                                {_foto.length === 0 ? (
                                     <h4>Daftar Foto</h4>
                                 ) : (
                                     <>
 
-                                        {_foto1.map((data, i) => (
+                                        {_foto.map((data, i) => (
                                             <>
                                                 <div className='cols-2 mt-3 mb-3 row row-cols-2'>
                                                     <div className='col-10 col-md-10'>
@@ -211,56 +219,88 @@ export default function Editruangan() {
                                 )}
                             </div>
                             <div className="col-lg-6 col-md-10 form-group mt-3">
-                                <label style={{ color: "white" }}>Foto ruangan (dapat di isi 3 foto)</label>
+                                <label style={{ color: "white" }}>Foto Hiburan (dapat di isi 3 foto)</label>
                                 <input type="file" className="form-control" name="myImage" onChange={uploadToClient} />
                             </div>
-                            <div className="col-lg-6 col-md-10 form-group mt-3">
-                                <label style={{ color: "white" }}>Kategori</label>
-                                <select className="form-control form-select" value={_kategori} onChange={(e) => setKategori(e.target.value)} required>
-                                    <option>--Pilih Kategori--</option>
-                                    <option value={'ruangan'}>Ruangan</option>
-                                    <option value={'pondok'}>pondok</option>
-                                </select>
-                            </div>
                             <div className="col-lg-6 col-md-10 mt-3 form-group">
-                                <label style={{ color: "white" }} htmlFor="validatedCustomFile">Nama ruang </label>
+                                <label style={{ color: "white" }}>Nama Hiburan</label>
                                 <input type="text"
-                                    id="validatedCustomFile" name="myImage"
+                                    id="nama hiburan" name="namahiburan"
                                     className="form-control"
-                                    placeholder="Nama ruangan"
-                                    onChange={(e) => setNamaruang(e.target.value)}
-                                    value={_namaruang}
+                                    placeholder="Nama Hiburan"
+                                    onChange={(e) => setNamahiburan(e.target.value)}
+                                    value={_namahiburan}
                                 />
                                 <div className="validate" />
+                            </div>
+                            <div className="row col-lg-6 col-md-10 mt-3 form-group">
+                                <label style={{ color: "white" }}>Sub Paket</label>
+                                <div className="col-lg-10 col-md-10 ">
+                                    <input type="text" className="form-control"
+                                        id="subtemp"
+                                        name="subtemp"
+                                        value={subtemp}
+                                        onChange={(e) => setSubtemp(e.target.value)}
+                                    />
+                                </div>
+                                <div className="col-lg-2 col-md-2 ">
+                                    <button className="form-control" type='button' onClick={() => onAddItemArray()}>
+                                        <i className="fa fa-plus"></i></button>
+                                </div>
+
+                            </div>
+                            <div className="mt-3 col-md-10 col-lg-6 form-group">
+                                <label style={{ color: "white" }} className="labels">Daftar Sub Hiburan</label>
+                            </div>
+                            <div className='row col-lg-6 col-md-10 mt-3 form-group'>
+                                {_subhiburan.length === 0 ? (
+                                    <label style={{ color: "white" }}>Isi Sub Hiburan</label>
+                                ) : (
+                                    <>
+
+                                            {_subhiburan.map((data, i) => (
+                                            <>
+                                                <div className="col-md-10 col-md-10">
+                                                    <input type="text" id={i} className="form-control col-10 mt-2 col-md-10" value={data} readOnly />
+                                                </div>
+                                                <div className='col-lg-2 col-md-2'>
+                                                    <button className="form-control col-2 mt-2 col-sm-2" type='button'
+                                                        onClick={() => removeItemArray(data)}
+                                                    >
+                                                        <i className="fa fa-trash"></i></button>
+                                                </div>
+                                            </>
+                                        ))}
+                                    </>
+                                )}
 
                             </div>
                             <div className="col-lg-6 col-md-10 mt-3 form-group">
-                                <label style={{ color: "white" }}>Kapasitas</label>
+                                <label style={{ color: "white" }}>Harga</label>
                                 <input type="number"
-                                    name="kapasitas"
+                                    id="harga"
+                                    name="harga"
                                     className="form-control"
-                                    placeholder="kapasitas"
-                                    onChange={(e) => setKapasitas(e.target.value)}
-                                    value={_kapasitas}
+                                    placeholder="Harga"
+                                    onChange={(e) => setHarga(e.target.value)}
+                                    value={_harga}
                                 />
                                 <div className="validate" />
-
                             </div>
-                            <div className="col-lg-6 col-md-10 mt-3 form-group">
+                            <div className="col-lg-6 col-md-10 form-group mt-3">
                                 <label style={{ color: "white" }}>Deskripsi</label>
                                 <textarea type="formcontrol"
+                                    id="deskripsi"
                                     name="deskripsi"
                                     className="form-control"
-                                    placeholder="deskripsi"
+                                    placeholder="Deskripsi"
                                     onChange={(e) => setDeskripsi(e.target.value)}
                                     value={_deskripsi}
                                 />
                                 <div className="validate" />
-
                             </div>
-
-                            <div className="text-center col-lg-6 col-md-10 form-group mt-3 mt-5">
-                                <button className="book-a-table-btn" type="submit" >Tambah Ruangan</button>
+                            <div className="text-center col-lg-6 col-md-10 form-group mt-5">
+                                <button className="book-a-table-btn" type="submit">Tambah Hiburan</button>
                                 {uploading &&
                                     <>
                                         <div className="lds-ellipsis"><div /><div /><div />
@@ -273,6 +313,7 @@ export default function Editruangan() {
                     </form>
                 </div>
             </section>
+\
         </>
     )
 }

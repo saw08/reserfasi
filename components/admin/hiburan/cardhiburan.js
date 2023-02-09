@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import Link from 'next/link';
 export default function Cardpesanan({ props }) {
     let namaHasil = props.namahiburan.split(" ").join("");
 
@@ -75,6 +75,20 @@ export default function Cardpesanan({ props }) {
                     className="btn btn-outline-secondary my-3" >
                     HAPUS
                 </button>
+                <Link className="btn btn-outline-secondary mb-2" href={{
+                    pathname: './edit-hiburan',
+                    query: {
+                        namahiburan: props.namahiburan,
+                        harga: props.harga,
+                        deskripsi: props.deskripsi,
+                        subhiburan: JSON.stringify(props.subhiburan),
+                        foto: JSON.stringify(props.foto),
+                        objectId: props._id
+                    }
+
+                }}>
+                    edit
+                </Link>
             </div>
         </div>
 
