@@ -164,8 +164,7 @@ export default function Editruangan() {
             <section id="events" className="events">
                 <div className="container " >
                     <div className="section-title mt-4">
-                        <h2>Paket</h2>
-                        <p>Tambah Data Paket</p>
+                        <p>Edit Data Paket</p>
                     </div>
                     <form onSubmit={handlePost} >
                         <div className="col-lg-7 col-md-11 p-3" style={{ borderStyle: 'solid', borderColor: 'white', borderRadius: '0.8rem' }} >

@@ -1,4 +1,6 @@
 import { useState } from 'react';
+import Link from 'next/link';
+
 export default function Cardpesanan({ props }) {
     // let namaHasil = props.namapaket.split(" ").join("");
 
@@ -25,7 +27,8 @@ export default function Cardpesanan({ props }) {
     return (
         <div className="col-lg-6 col-md-6" style={{ borderStyle: 'solid', borderColor: 'GrayText', borderRadius: '0.4rem' }}>
             <div className="menu-content p-2">
-                <a href="">{props.namamenu}</a><span style={{textAligent:'left'}}>Rp {props.harga}</span>
+                <a href="">{props.namamenu}</a><span style={{ textAligent: 'left' }}>Rp {props.harga}</span>
+                <span style={{ textAligent: 'left' }}>Kategoti : {props.kategori}</span>
                 
             </div>
             <button type="button"
@@ -33,6 +36,19 @@ export default function Cardpesanan({ props }) {
                 className="btn btn-outline-secondary my-2" >
                 HAPUS
             </button>
+            <Link className="btn btn-outline-secondary " href={{
+                pathname: './edit-menu',
+                query: {
+                    namamenu: props.namamenu,
+                    kategori: props.kategori,
+                    harga: props.harga, 
+                    objectId: props._id
+
+                }
+
+            }}>
+                edit
+            </Link>
         </div>
 
     )

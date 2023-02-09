@@ -38,10 +38,10 @@ export default function Cardruangan({ props }) {
                             <>
                                 {i == 0 ?
                                     (<div className="carousel-item active">
-                                        <img src={`${data}`} className="d-block w-100" alt="..." />
+                                        <img src={`${data}`} className="d-block w-100" height={300} width={300} style={{ objectFit: "cover" }} />
                                     </div>) :
                                     (<div className="carousel-item">
-                                        <img src={`${data}`} className="d-block w-100" alt="..." />
+                                        <img src={`${data}`} className="d-block w-100" height={300} width={300} style={{ objectFit: "cover" }} />
                                     </div>)}
                             </>
                         ))}
@@ -73,7 +73,7 @@ export default function Cardruangan({ props }) {
                 </div>
                 <button type="button"
                     onClick={() => deleteRuang()}
-                    className="btn btn-outline-secondary mb-2" >
+                    className="btn btn-outline-secondary mx-2 mb-2" >
                     HAPUS
                 </button>
                 <Link className="btn btn-outline-secondary mb-2" href={{

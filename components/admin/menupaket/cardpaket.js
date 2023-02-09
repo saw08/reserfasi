@@ -33,10 +33,10 @@ export default function Cardpesanan({ props }) {
                         <>
                             {i == 0 ?
                                 (<div className="carousel-item active">
-                                    <img src={`${data}`} className="d-block rounded  w-100" height={300} style={{ objectFit: "cover" }} />
+                                    <img src={`${data}`} className="d-block rounded  w-100" height={300} width={300} style={{ objectFit: "cover" }} />
                                 </div>) :
                                 (<div className="carousel-item">
-                                    <img src={`${data}`} className="d-block rounded  w-100" height={300} style={{ objectFit: "cover" }} />
+                                    <img src={`${data}`} className="d-block rounded  w-100" height={300} width={300} style={{ objectFit: "cover" }} />
                                 </div>)}
                         </>
                     ))}
@@ -74,7 +74,7 @@ export default function Cardpesanan({ props }) {
             <div>
                 <button type="button"
                     onClick={() => deleteAlbum()}
-                    className="btn btn-outline-secondary my-3" >
+                    className="btn btn-outline-secondary mb-2" >
                     HAPUS
                 </button>
                 <Link className="btn btn-outline-secondary mb-2" href={{

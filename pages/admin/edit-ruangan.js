@@ -153,7 +153,7 @@ export default function Editruangan() {
             <section id="events" className="events">
                 <div className="container" >
                     <div className="section-title">
-                        <h2>Tambah ruangan</h2>
+                        <h2>Edit Data Ruang</h2>
                     </div>
                     <form onSubmit={handlePost} >
                         <div className=" col-lg-12">

@@ -44,6 +44,42 @@ async function addMenu(req, res) {
         });
     }
 }
+async function updateMenu(req, res) {
+    const { namamenu,
+        kategori,
+        harga,
+        objectId, } = req.body
+    var ObjectId = require('mongodb').ObjectId;
+    const convertedObjectId = new ObjectId(objectId);
+    try {
+        // connect to the database
+        let { db } = await connectToDatabase();
+        // update the published status of the post
+        await db.collection('menu').updateOne(
+            {
+                '_id': convertedObjectId
+            },
+            {
+                $set: {
+                    'namamenu': namamenu,
+                    'harga': harga,
+                    'kategori': kategori
+                }
+            }
+        );
+        // return a message
+        return res.json({
+            message: 'Post updated successfully',
+            success: true,
+        });
+    } catch (error) {
+        // return an error
+        return res.json({
+            message: new Error(error).message,
+            success: false,
+        });
+    }
+}
 async function deleteaMenu(req, res) {
     var ObjectId = require('mongodb').ObjectId;
     const { _id } = req.body;
