@@ -51,6 +51,7 @@ async function deleteRuangan(req, res) {
 };
 async function updateRuangan(req, res) {
     const { namaruang,
+        foto1,
         kategori,
         kapasitas,
         deskripsi,
@@ -71,6 +72,7 @@ async function updateRuangan(req, res) {
                     'kategori': kategori,
                     'kapasitas': kapasitas,
                     'deskripsi': deskripsi,
+                    'foto1': foto1,
                 }
             }
         );

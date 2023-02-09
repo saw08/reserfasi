@@ -1,5 +1,7 @@
 import { useState } from 'react';
 import Image from 'next/image';
+import Link from 'next/link';
+
 export default function Cardpesanan({ props }) {
     let namaHasil = props.namapaket.split(" ").join("");
 
@@ -85,7 +87,9 @@ export default function Cardpesanan({ props }) {
                         objectId: props._id
                     }
 
-                }}></Link>
+                }}>
+                    edit
+                </Link>
             </div>
         </div>
 

@@ -24,6 +24,44 @@ async function getPaket(req, res) {
         });
     }
 }
+async function updatePaket(req, res) {
+    const { namapaket,
+        harga,
+        subpaket,
+        foto,
+        objectId, } = req.body
+    var ObjectId = require('mongodb').ObjectId;
+    const convertedObjectId = new ObjectId(objectId);
+    try {
+        // connect to the database
+        let { db } = await connectToDatabase();
+        // update the published status of the post
+        await db.collection('paket').updateOne(
+            {
+                '_id': convertedObjectId
+            },
+            {
+                $set: {
+                    'namapaket': namapaket,
+                    'harga': harga,
+                    'subpaket': subpaket,
+                    'foto': foto,
+                }
+            }
+        );
+        // return a message
+        return res.json({
+            message: 'Post updated successfully',
+            success: true,
+        });
+    } catch (error) {
+        // return an error
+        return res.json({
+            message: new Error(error).message,
+            success: false,
+        });
+    }
+}
 async function deletePaket(req, res) {
     var ObjectId = require('mongodb').ObjectId;
     const { _id } = req.body;

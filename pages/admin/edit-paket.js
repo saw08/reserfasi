@@ -31,27 +31,23 @@ export default function Editruangan() {
 
     //Set All
     useEffect(() => {
-        if (typeof namaruang == 'string') {
-            setNamaruang(namaruang)
+        if (typeof namapaket == 'string') {
+            setNamapaket(namapaket)
 
         }
-        if (typeof kapasitas == 'string') {
-            setKapasitas(kapasitas)
+        if (typeof harga == 'string') {
+            setHarga(harga)
         }
-        if (typeof kategori == 'string') {
-            setKategori(kategori)
+        if (typeof subpaket == 'string') {
+            setFoto(Object.assign(_subpaket, JSON.parse(subpaket)))
         }
-        if (typeof deskripsi == 'string') {
-            setDeskripsi(deskripsi)
+        if (typeof foto == 'string') {
+            setFoto(Object.assign(_foto, JSON.parse(foto)))
         }
-        if (typeof foto1 == 'string') {
-            setFoto(Object.assign(_foto1, JSON.parse(foto1)))
-        }
-    }, [namaruang,
-        kapasitas,
-        foto1,
-        kategori,
-        deskripsi,
+    }, [namapaket,
+        harga,
+        subpaket,
+        foto,
         objectId])
 
     //UPDATE
@@ -63,26 +59,26 @@ export default function Editruangan() {
         const body = new FormData();
         let imageUrl = []
 
-        body.append('upload_preset', 'my-uploads');
+        body.append('upload_preset', 'kemrangimg');
         //console.log("file", image)
         for (let i = 0; i < image.length; i++) {
             await body.append("file", image[i]);
-            const response = await fetch('https://api.cloudinary.com/v1_1/api-sport/image/upload', {
+            const response = await fetch('https://api.cloudinary.com/v1_1/perpus/image/upload', {
                 method: "POST",
                 body
             }).then(r => r.json());
             // await console.log(response)
             // await console.log('Secure URL')
             // await console.log(response.secure_url)
-            foto.push(response.secure_url)
+            imageUrl.push(response.secure_url)
 
             // console.log('Secure URL Array')
             // console.log(imageUrl)
         }
-        for (let i = 0; i < _foto1.length; i++) {
-            imageUrl.push(_foto1[i])
+        for (let i = 0; i < _foto.length; i++) {
+            imageUrl.push(_foto[i])
         }
-        setFoto(Object.assign(_foto1, imageUrl))
+        setFoto(Object.assign(_foto, imageUrl))
         //Uploading
         if (imageUrl.length != 0) {
             setUploading(false)
@@ -90,34 +86,24 @@ export default function Editruangan() {
         // fields check
         try {
             // Update post
-            await fetch('/api/db_ruangan', {
+            await fetch('/api/db_paket', {
                 method: 'PUT',
                 headers: {
                     'Content-Type': 'application/json',
                 },
                 body: JSON.stringify({
-                    namaruang: _namaruang,
-                    kapasitas: _kapasitas,
-                    foto1: _foto1,
-                    kategori: _kategori,
-                    deskripsi: _deskripsi,
-                    objectId: objectId,
+                    namapaket: _namapaket,
+                    harga: _harga,
+                    subpaket: _subpaket,
+                    foto: _foto,
+                    objectId: objectId
                 }),
             });
             // reload the page
-            alert('ruangan sukses diupdate')
-            router.push('/admin/tambah-ruang');
+            alert('paket sukses diupdate')
+            router.push('/admin/tambah-menu');
         } catch (error) {
             // Stop publishing state
-        }
-    };
-    const uploadToClient = (event) => {
-        if (event.target.files && event.target.files[0]) {
-            var x = document.getElementById("image");
-            const i = event.target.files[0];
-            setGambarNew(array => [...array, i.name])
-            setImage(array => [...array, i]);
-            setCreateObjectURL(array => [...array, URL.createObjectURL(i)]);
         }
     };
     const onAddItemArray = () => {
@@ -134,17 +120,27 @@ export default function Editruangan() {
             }
         }
 
-        console.log('afterState:')
 
     };
+    const uploadToClient = (event) => {
+        if (event.target.files && event.target.files[0]) {
+            const i = event.target.files[0];
+            var x = document.getElementById("image");
+
+            setGambarNew(array => [...array, i.name])
+            setImage(array => [...array, i]);
+            setCreateObjectURL(array => [...array, URL.createObjectURL(i)]);
+        }
+    };
+    
 
     const removeItemArrayGambar = (data) => {
         var index = _foto.indexOf(data)
         if (index >= 0) {
             if (_foto.length === 0) {
-                setGambar([])
+                setFoto([])
             } else {
-                setGambar(array => [...array.slice(0, index), ...array.slice(index + 1)])
+                setFoto(array => [...array.slice(0, index), ...array.slice(index + 1)])
             }
         }
     }
@@ -154,11 +150,11 @@ export default function Editruangan() {
         if (index >= 0) {
             if (_gambarNew.length === 0) {
                 setGambarNew([])
-                setImage([])
+                setFoto([])
                 setCreateObjectURL([])
             } else {
                 setGambarNew(array => [...array.slice(0, index), ...array.slice(index + 1)])
-                setImage(array => [...array.slice(0, index), ...array.slice(index + 1)])
+                setFoto(array => [...array.slice(0, index), ...array.slice(index + 1)])
                 setCreateObjectURL(array => [...array.slice(0, index), ...array.slice(index + 1)])
             }
         }
@@ -174,19 +170,19 @@ export default function Editruangan() {
                     <form onSubmit={handlePost} >
                         <div className="col-lg-7 col-md-11 p-3" style={{ borderStyle: 'solid', borderColor: 'white', borderRadius: '0.8rem' }} >
                             <div className="mt-2 col-lg-12 col-md-12">
-                                {foto.length === 0 ? (
+                                {_foto.length === 0 ? (
                                     <h4>Daftar Foto</h4>
                                 ) : (
                                     <>
 
-                                        {foto.map((data, i) => (
+                                        {_foto.map((data, i) => (
                                             <>
                                                 <div className='cols-2 mt-3 mb-3 row row-cols-2'>
                                                     <div className='col-lg-6 col-md-8'>
-                                                        <img id='image' className='img-fluid d-block border border-dark' width={300} height={300} src={createObjectURL[i]} />
+                                                        <img id='image' className='img-fluid d-block border border-dark' width={300} height={300} src={`${data}`} />
                                                     </div>
                                                     <div className='col-2 col-md-2'>
-                                                        <button className="form-control"
+                                                        <button className="form-control" type='button'
                                                             onClick={() => removeItemArrayGambar(data)}
                                                         >
                                                             <i className="fa fa-trash"></i></button>
@@ -237,17 +233,17 @@ export default function Editruangan() {
                                     className="form-control"
                                     placeholder="Nama Paket"
                                     onChange={(e) => setNamapaket(e.target.value)}
-                                    value={namapaket}
+                                    value={_namapaket}
                                 />
                                 <div className="validate" />
                             </div>
                             <div className="row col-lg-12 col-md-12 mt-3 form-group">
-                                <label style={{ color: "white" }}>Sub Menu Paket</label>
+                                <label style={{ color: "white" }}>Tambah Sub Menu Paket</label>
                                 <div className="col-lg-10 col-md-10 ">
                                     <input type="text" className="form-control"
                                         id="subtemp"
                                         name="subtemp"
-                                        value={pakettemp}
+                                        value={_pakettemp}
                                         onChange={(e) => setPakettemp(e.target.value)}
                                     />
                                 </div>
@@ -260,13 +256,13 @@ export default function Editruangan() {
                             <div className="mt-3 col-md-12 col-lg-12 form-group">
                                 <label style={{ color: "white" }} className="labels">Daftar Sub Menu Paket</label>
                             </div>
-                            <div className='row col-lg-12 col-md-12 mt-3 form-group'>
-                                {subpaket.length === 0 ? (
+                            <div className='row col-lg-12 col-md-12  form-group'>
+                                {_subpaket.length === 0 ? (
                                     <label style={{ color: "#cda45e" }}>Isi sub paket!</label>
                                 ) : (
                                     <>
 
-                                        {subpaket.map((data, i) => (
+                                        {_subpaket.map((data, i) => (
                                             <>
                                                 <div className="col-md-10 col-md-10">
                                                     <input type="text" id={i} className="form-control col-10 mt-2 col-md-10" value={data} readOnly />
@@ -290,14 +286,14 @@ export default function Editruangan() {
                                     name="harga"
                                     className="form-control"
                                     onChange={(e) => setHarga(e.target.value)}
-                                    value={harga}
+                                    value={_harga}
                                     placeholder="Harga"
 
                                 />
                                 <div className="validate" />
                             </div>
                             <div className="text-center col-lg-12 col-md-12 form-group mt-5 my-5">
-                                <button className="book-a-table-btn" type="submit">Tambah Paket</button>
+                                <button className="book-a-table-btn" type="submit">edit Paket</button>
                                 <div className="text-center col-lg-12 col-md-12">
                                     {uploading &&
                                         <>

@@ -19,6 +19,7 @@ export default function Editruangan() {
     const [_kapasitas, setKapasitas] = useState('');
     const [_deskripsi, setDeskripsi] = useState('');
     const [_foto1, setFoto] = useState([]);
+    const [image, setImage] = useState([]);
     const [_gambarNew, setGambarNew] = useState([]);
     const [createObjectURL, setCreateObjectURL] = useState([]);
     const [uploading, setUploading] = useState(false)
@@ -52,43 +53,6 @@ export default function Editruangan() {
         objectId])
 
     //UPDATE
-    
-    const uploadToClient = (event) => {
-        if (event.target.files && event.target.files[0]) {
-            var x = document.getElementById("image");
-            const i = event.target.files[0];
-            setGambarNew(array => [...array, i.name])
-            setFoto(array => [...array, i]);
-            setCreateObjectURL(array => [...array, URL.createObjectURL(i)]);
-        }
-    };
-
-
-    const removeItemArrayGambar = (data) => {
-        var index = _foto1.indexOf(data)
-        if (index >= 0) {
-            if (_foto1.length === 0) {
-                setFoto([])
-            } else {
-                setFoto(array => [...array.slice(0, index), ...array.slice(index + 1)])
-            }
-        }
-    }
-
-    const removeItemArrayGambarNew = (data) => {
-        var index = _gambarNew.indexOf(data)
-        if (index >= 0) {
-            if (_gambarNew.length === 0) {
-                setGambarNew([])
-                setFoto([])
-                setCreateObjectURL([])
-            } else {
-                setGambarNew(array => [...array.slice(0, index), ...array.slice(index + 1)])
-                setFoto(array => [...array.slice(0, index), ...array.slice(index + 1)])
-                setCreateObjectURL(array => [...array.slice(0, index), ...array.slice(index + 1)])
-            }
-        }
-    }
     const handlePost = async (e) => {
         e.preventDefault();
         setUploading(true)
@@ -97,18 +61,18 @@ export default function Editruangan() {
         const body = new FormData();
         let imageUrl = []
 
-        body.append('upload_preset', 'my-uploads');
+        body.append('upload_preset', 'kemrangimg');
         //console.log("file", image)
         for (let i = 0; i < image.length; i++) {
             await body.append("file", image[i]);
-            const response = await fetch('https://api.cloudinary.com/v1_1/api-sport/image/upload', {
+            const response = await fetch('https://api.cloudinary.com/v1_1/perpus/image/upload', {
                 method: "POST",
                 body
             }).then(r => r.json());
             // await console.log(response)
             // await console.log('Secure URL')
             // await console.log(response.secure_url)
-            foto1.push(response.secure_url)
+            imageUrl.push(response.secure_url)
 
             // console.log('Secure URL Array')
             // console.log(imageUrl)
@@ -116,6 +80,8 @@ export default function Editruangan() {
         for (let i = 0; i < _foto1.length; i++) {
             imageUrl.push(_foto1[i])
         }
+        // console.log('Image URL')
+        console.log(imageUrl)
         setFoto(Object.assign(_foto1, imageUrl))
         //Uploading
         if (imageUrl.length != 0) {
@@ -145,6 +111,43 @@ export default function Editruangan() {
             // Stop publishing state
         }
     };
+    const uploadToClient = (event) => {
+        if (event.target.files && event.target.files[0]) {
+            var x = document.getElementById("image");
+
+            const i = event.target.files[0];
+            setGambarNew(array => [...array, i.name])
+            setImage(array => [...array, i]);
+            setCreateObjectURL(array => [...array, URL.createObjectURL(i)]);
+        }
+    };
+
+    const removeItemArrayGambar = (data) => {
+        var index = _foto1.indexOf(data)
+        if (index >= 0) {
+            if (_foto1.length === 0) {
+                setFoto([])
+            } else {
+                setFoto(array => [...array.slice(0, index), ...array.slice(index + 1)])
+            }
+        }
+    }
+
+    const removeItemArrayGambarNew = (data) => {
+        var index = _gambarNew.indexOf(data)
+        if (index >= 0) {
+            if (_gambarNew.length === 0) {
+                setGambarNew([])
+                setFoto([])
+                setCreateObjectURL([])
+            } else {
+                setGambarNew(array => [...array.slice(0, index), ...array.slice(index + 1)])
+                setFoto(array => [...array.slice(0, index), ...array.slice(index + 1)])
+                setCreateObjectURL(array => [...array.slice(0, index), ...array.slice(index + 1)])
+            }
+        }
+    }
+    
     return (
         <>
             <section id="events" className="events">
