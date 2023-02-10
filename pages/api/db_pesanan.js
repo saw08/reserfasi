@@ -12,6 +12,11 @@ async function getPesanan(req, res) {
             .find({
             })
             .toArray();
+        let hiburan = await db
+            .collection('hiburan')
+            .find({
+            })
+            .toArray();
         let menu = await db
             .collection('menu')
             .find({
@@ -31,6 +36,7 @@ async function getPesanan(req, res) {
         hasil['paket'] = paket
         hasil['menu'] = menu
         hasil['ruangan'] = ruangan
+        hasil['hiburan'] = hiburan
         hasil['transaksi'] = transaksi
         // return the posts
         return res.json({

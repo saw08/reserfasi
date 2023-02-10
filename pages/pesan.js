@@ -22,6 +22,7 @@ export default function Pesan() {
     let pesanArr = data['message']
     let ruangan = pesanArr['ruangan']
     let menu = pesanArr['menu']
+    let hiburan = pesanArr['hiburan']
     let paket = pesanArr['paket']
     console.log(pesanArr)
 
@@ -131,26 +132,19 @@ export default function Pesan() {
                                 <icon className='fa fa-sort-amount-desc'></icon>&nbsp;Pilih Hiburan
                             </a>
                             <div className="row col collapse multi-collapse text-start mt-4" id="hiburan">
-                                <div className="col-4  p-2">
-                                    <input type="checkbox" id={`btn-check133`}
-                                        autoComplete="off" name='ruangan1' className="btn-check" />
-                                    <label className="card btn-apisport btn-apisport-parent" htmlFor={`btn-check133`}><div>
-                                        <img src="./1.jpg" className="card-img-top" alt="..." />
-                                        <div className="card-body">
-                                            <p className="card-text" style={{ fontSize: '14px', lineHeight: '80%' }}><b>the bulk of the card's content.</b></p>
-                                        </div>
-                                    </div></label>
-                                </div>
-                                <div className="col-4  p-2">
-                                    <input type="checkbox" id={`btn-check1373`}
-                                        autoComplete="off" name='ruangan1' className="btn-check" />
-                                    <label className="card btn-apisport btn-apisport-parent" htmlFor={`btn-check1373`}><div>
-                                        <img src="./1.jpg" className="card-img-top" alt="..." />
-                                        <div className="card-body">
-                                            <p className="card-text" style={{ fontSize: '14px', lineHeight: '80%' }}><b>the bulk of the card's content.</b></p>
-                                        </div>
-                                    </div></label>
-                                </div>
+                                {hiburan.map((data, i) => (
+                                    <div className="col-4  p-2">
+                                        <input type="checkbox" id={`btn-check${i}`}
+                                            autoComplete="off" name='ruangan1' className="btn-check" />
+                                        <label className="card btn-apisport btn-apisport-parent" htmlFor={`btn-check${i}`}><div>
+                                            <img src={data.foto[0]} className="card-img-top" alt="..." height={300} width={300} style={{ objectFit: "cover" }} />
+                                            <div className="card-body">
+                                                <p className="card-text" style={{ fontSize: '14px', lineHeight: '80%' }}><b>{data.namahiburan}</b></p>
+                                            </div>
+                                        </div></label>
+                                    </div>
+                                ))}
+                               
 
 
 
