@@ -57,12 +57,10 @@ export default function Album() {
         let data = await response1.json();
         if (data.success) {
             // reset the fields
-            setDeskripsi('');
-            setFoto('');
-            //setImage(null)
-            setCreateObjectURL(null);
+            router.reload()
             // set the message
             return setMessage(data.message);
+
         }
         else {
             // set the error

@@ -73,13 +73,7 @@ export default function Tambahhiburan() {
         let data = await response1.json();
         if (data.success) {
             // reset the fields
-            setNamahiburan('');
-            setSubhiburan('');
-            setHarga('');
-            setDeskripsi('');
-            setFoto('');
-            //setImage(null)
-            setCreateObjectURL(null);
+            router.reload()
             // set the message
             return setMessage(data.message);
 

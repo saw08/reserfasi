@@ -63,13 +63,7 @@ export default function Tambahruang() {
         let data = await response1.json();
         if (data.success) {
             // reset the fields
-            setNamaruang('');
-            setKategori('');
-            setKapasitas('');
-            setDeskripsi('');
-            setFoto('');
-            //setImage(null)
-            setCreateObjectURL(null);
+            router.reload()
             // set the message
             return setMessage(data.message);
 
