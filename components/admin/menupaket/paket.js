@@ -1,3 +1,4 @@
+import { useRouter } from 'next/router';
 import { useState } from 'react';
 
 export default function TambahPaket() {
@@ -11,15 +12,8 @@ export default function TambahPaket() {
     const [error, setError] = useState('');
     const [message, setMessage] = useState('');
     const [uploading, setUploading] = useState(false)
-    const clearInput = () => {
-        setNamapaket('');
-        setSubpaket([]);
-        setPakettemp('');
-        setHarga('');
-        setFoto([]);
-        setImage([]);
-        setUploading(false)
-    }
+    const router = useRouter()
+    
 
     const handlePost = async (e) => {
         e.preventDefault();
@@ -49,7 +43,6 @@ export default function TambahPaket() {
         // reset error and message
         setError('');
         setMessage('');
-        clearInput();
         // alert("Penambahan Data Sukses")
         // fields check
         if (!subpaket || !namapaket || !harga || !foto)
@@ -70,12 +63,7 @@ export default function TambahPaket() {
         let data = await response1.json();
         if (data.success) {
             // reset the fields
-            setNamapaket('');
-            setSubpaket('');
-            setHarga('');
-            setFoto('');
-            //setImage(null)
-            setCreateObjectURL(null);
+            router.reload()
             // set the message
             return setMessage(data.message);
 

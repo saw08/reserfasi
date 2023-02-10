@@ -22,10 +22,16 @@ async function getPesanan(req, res) {
             .find({
             })
             .toArray();
+        let transaksi = await db
+            .collection('transaksi')
+            .find({
+            })
+            .toArray();
         let hasil = {}
         hasil['paket'] = paket
         hasil['menu'] = menu
         hasil['ruangan'] = ruangan
+        hasil['transaksi'] = transaksi
         // return the posts
         return res.json({
             message: JSON.parse(JSON.stringify(hasil)),

@@ -2,6 +2,7 @@ import Head from 'next/head'
 import Image from 'next/image'
 import Ruangan from '../components/home/ruangan'
 import Menu from '../components/home/menu'
+// MONGODB_URI = "mongodb://127.0.0.1:27017"
 
 export default function Home() {
   return (

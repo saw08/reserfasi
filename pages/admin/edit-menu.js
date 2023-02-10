@@ -74,11 +74,11 @@ export default function TambahPaket() {
                             <label style={{ color: "white" }} htmlFor="exampleFormControlSelect1">Kategori</label><i style={{ color: '#ff0000', fontSize: 'larger' }}>*</i>
                             <select className="form-control form-select" onChange={(e) => setKategori(e.target.value)} value={_kategori} required>
                                 <option>--Pilih Kategori--</option>
-                                <option value={'makananutama'}>Makanan utama</option>
-                                <option value={'laukpauk'}>Lauk Pauk</option>
-                                <option value={'sayursambal'}>Sayur & Sambal</option>
-                                <option value={'minuman'}>Minuman</option>
-                                <option value={'kuesnack'}>Kue & Snack</option>
+                                <option value={'Makanan Utama'}>Makanan utama</option>
+                                <option value={'Lauk Pauk'}>Lauk Pauk</option>
+                                <option value={'Sayur Sambal'}>Sayur & Sambal</option>
+                                <option value={'Minuman'}>Minuman</option>
+                                <option value={'Kue & Snack'}>Kue & Snack</option>
                             </select>
                         </div>
                         <div className="col-lg-12 col-md-12 mt-3 form-group">
@@ -106,7 +106,7 @@ export default function TambahPaket() {
                             <div className="validate" />
                         </div>
                         <div className="text-center col-lg-12 col-md-12 form-group mt-5 my-5">
-                            <button className="book-a-table-btn" type="submit">Tambah menu</button>
+                            <button className="book-a-table-btn" type="submit">Edit menu</button>
                         </div>
                     </div>
 

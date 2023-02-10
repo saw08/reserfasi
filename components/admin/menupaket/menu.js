@@ -4,7 +4,7 @@ import { useState } from 'react';
 export default function TambahPaket() {
     const [namamenu, setNamamenu] = useState('');
     const [harga, setHarga] = useState(0);
-    const [kategori, setKategori] = useState(0);
+    const [kategori, setKategori] = useState('');
     // const [image, setImage] = useState(null);
     const [createObjectURL, setCreateObjectURL] = useState(null);
     const [error, setError] = useState('');
@@ -91,13 +91,13 @@ export default function TambahPaket() {
                     <div className="col-lg-7 col-md-11 p-3" style={{ borderStyle: 'solid', borderColor: 'white', borderRadius: '0.8rem' }} >
                         <div className="form-group mt-2 col-md-12">
                             <label style={{ color: "white" }} htmlFor="exampleFormControlSelect1">Kategori</label><i style={{ color: '#ff0000', fontSize: 'larger' }}>*</i>
-                            <select className="form-control form-select" onChange={(e) => setKategori(e.target.value)} required>
-                                <option>--Pilih Kategori--</option>
-                                <option value={'makananutama'}>Makanan utama</option>
-                                <option value={'laukpauk'}>Lauk Pauk</option>
-                                <option value={'sayursambal'}>Sayur & Sambal</option>
-                                <option value={'minuman'}>Minuman</option>
-                                <option value={'kuesnack'}>Kue & Snack</option>
+                            <select className="form-control form-select" value={ kategori} onChange={(e) => setKategori(e.target.value)} required>
+                                <option value={''}>--Pilih Kategori--</option>
+                                <option value={' Makanan Utama'}>Makanan utama</option>
+                                <option value={'Lauk Pauk'}>Lauk Pauk</option>
+                                <option value={'Sayur Sambal'}>Sayur & Sambal</option>
+                                <option value={'Minuman'}>Minuman</option>
+                                <option value={'Kue & Snack'}>Kue & Snack</option>
                             </select>
                         </div>
                         <div className="col-lg-12 col-md-12 mt-3 form-group">
