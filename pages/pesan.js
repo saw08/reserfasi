@@ -1,5 +1,6 @@
 import useSWR from 'swr'
 import { useState } from 'react'
+import moment from "moment";
 
 export default function Pesan() {
     const [nama, setNama] = useState('');
@@ -25,6 +26,13 @@ export default function Pesan() {
     let hiburan = pesanArr['hiburan']
     let paket = pesanArr['paket']
     console.log(pesanArr)
+
+    var currentdate = new Date();
+    var dateDate = currentdate.getDate() + "/"
+        + (currentdate.getMonth() + 1) + "/"
+        + currentdate.getFullYear()
+
+    let nextDay = moment(dateDate, "DD/MM/YYYY").add(1, 'days').format('YYYY-MM-DD')
 
     let jamTersedia = ['08.00-09.00', '09.00-10.00', '11.00-12.00', '13.00-14.00', '15.00-16.00', '17.00-18.00', '19.00-20.00', '21.00-22.00', '22.00-23.00']
 
@@ -55,27 +63,27 @@ export default function Pesan() {
                     <div className="row">
                         <div className="col-lg-10 col-md-10 mt-3 form-group">
                             <label style={{ color: "white" }}>Nama Pemesan</label>
-                            <input type="text" name="name" className="form-control" id="name" placeholder="Your Name" data-rule="minlen:4" data-msg="Please enter at least 4 chars" />
+                            <input type="text" name="name" className="form-control" placeholder="Nama Pemesan" value={nama} onChange={(e) => setNama(e.target.value)} data-msg="Please enter at least 4 chars" />
                             <div className="validate" />
                         </div>
                         <div className="col-lg-10 col-md-10 form-group mt-3">
                             <label style={{ color: "white" }}>Email</label>
-                            <input type="email" className="form-control" name="email" id="email" placeholder="Your Email" data-rule="email" data-msg="Please enter a valid email" />
+                            <input type="email" className="form-control" value={email} onChange={(e) => setEmail(e.target.value)} name="email" id="email" placeholder="Your Email" data-rule="email" data-msg="Please enter a valid email" />
                             <div className="validate" />
                         </div>
                         <div className="col-lg-10 col-md-10 form-group mt-3 ">
                             <label style={{ color: "white" }}>Nomor Kontak</label>
-                            <input type="text" className="form-control" name="phone" id="phone" placeholder="Nomor Telp." data-rule="minlen:4" data-msg="Please enter at least 4 chars" />
+                            <input type="text" className="form-control" value={noTelp} onChange={(e) => setNoTelp(e.target.value)} name="phone" id="phone" placeholder="Nomor Telp." data-rule="minlen:4" data-msg="Please enter at least 4 chars" />
                             <div className="validate" />
                         </div>
                         <div className="col-lg-10 col-md-10 form-group mt-3">
                             <label style={{ color: "white" }}>Tanggal Booking</label>
-                            <input type="date" className="form-control" placeholder="Date" />
+                            <input type="date" min={nextDay} className="form-control" value={tglPesan}  onChange={(e) => setTglPesan(e.target.value)} />
                         </div>
                         <div className="col-lg-10 col-md-10 form-group mt-3">
                             <label style={{ color: "white" }}>Jumlah Orang</label>
-                            <input type="number" className="form-control" name="people" id="people" placeholder="jumlah orang" data-rule="minlen:1" data-msg="Please enter at least 1 chars" />
-                            <div className="validate" />
+                            <input type="number" className="form-control" value={jumlahOrang} onChange={(e) =>setJumlahOrang(e.target.value)} placeholder="Jumlah Orang" min={0} max={50} data-msg="Please enter at least 1 chars" />
+
                         </div>
                         <div className="col-lg-10 col-md-10 form-group mt-3">
                             <label style={{ color: "white" }}>Jam Booking</label>
@@ -217,10 +225,10 @@ export default function Pesan() {
 
                     <div className='row'>
                         <h3 className='text-black'>Pesanan</h3>
-                        <h5 className='text-black'>Nama: </h5>
-                        <h5 className='text-black'>Email: </h5>
-                        <h5 className='text-black'>No. Telp: </h5>
-                        <h5 className='text-black'>Tgl Reservasi: </h5>
+                        <h5 className='text-black'>Nama: {nama}</h5>
+                        <h5 className='text-black'>Email: {email}</h5>
+                        <h5 className='text-black'>No. Telp: {noTelp}</h5>
+                        <h5 className='text-black'>Tgl Reservasi: {tglPesan}</h5>
                         <h5 className='text-black'>Ruangan: </h5>
                         <h5 className='text-black'>Hiburan: </h5>
                         <h5 className='text-black'>Jam Pesanan</h5>
