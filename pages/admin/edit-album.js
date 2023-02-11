@@ -1,126 +1,159 @@
 import { useState } from 'react';
 import { useRouter } from 'next/router';
-import MapHiburan from '../../components/admin/hiburan/hiburan'
-
+import { useEffect } from 'react';
 
 export default function Tambahhiburan() {
-    const [namahiburan, setNamahiburan] = useState('');
+    let router = useRouter()
+    const {
+        namahiburan,
+        harga,
+        subhiburan,
+        foto,
+        deskripsi,
+        objectId,
+    } = router.query
+    const [_namahiburan, setNamahiburan] = useState('');
     const [subtemp, setSubtemp] = useState('');
-    const [subhiburan, setSubhiburan] = useState([]);
-    const [harga, setHarga] = useState(0);
-    const [deskripsi, setDeskripsi] = useState('');
-    const [foto, setFoto] = useState([]);
+    const [_subhiburan, setSubhiburan] = useState([]);
+    const [_harga, setHarga] = useState(0);
+    const [_deskripsi, setDeskripsi] = useState('');
+    const [_foto, setFoto] = useState([]);
     const [image, setImage] = useState([]);
     const [createObjectURL, setCreateObjectURL] = useState([]);
-    const [error, setError] = useState('');
-    const [message, setMessage] = useState('');
     const [uploading, setUploading] = useState(false)
-    const router = useRouter()
+    const [_gambarNew, setGambarNew] = useState([]);
 
-   
+    
+    useEffect(() => {
+        if (typeof namahiburan == 'string') {
+            setNamahiburan(namahiburan)
 
+        }
+        if (typeof harga == 'string') {
+            setHarga(harga)
+        }
+        if (typeof deskripsi == 'string') {
+            setDeskripsi(deskripsi)
+        }
+        if (typeof subhiburan == 'string') {
+            setSubhiburan(Object.assign(_subhiburan, JSON.parse(subhiburan)))
+        }
+        if (typeof foto == 'string') {
+            setFoto(Object.assign(_foto, JSON.parse(foto)))
+        }
+    }, [namahiburan,
+        harga,
+        subhiburan,
+        foto,
+        deskripsi,
+        objectId,])
+
+    //UPDATE
     const handlePost = async (e) => {
         e.preventDefault();
-        //Uploading
         setUploading(true)
-        //Uploading
-        const body = new FormData();
-        let foto = []
 
+        //Cloudinary Update
+        const body = new FormData();
+        let imageUrl = []
+
+        body.append('upload_preset', 'kemrangimg');
         //console.log("file", image)
         for (let i = 0; i < image.length; i++) {
             await body.append("file", image[i]);
-            body.append('upload_preset', 'kemrangimg');
             const response = await fetch('https://api.cloudinary.com/v1_1/perpus/image/upload', {
                 method: "POST",
                 body
             }).then(r => r.json());
-            // await console.log(response)
-            // await console.log('Secure URL')
-            // await console.log(response.secure_url)
-            foto.push(response.secure_url)
+            imageUrl.push(response.secure_url)
         }
+        for (let i = 0; i < _foto.length; i++) {
+            imageUrl.push(_foto[i])
+        }
+        setFoto(Object.assign(_foto, imageUrl))
         //Uploading
-
-        //Cloudinary End
-
-        // reset error and message
-        setError('');
-        setMessage('');
-        // alert("Penambahan Data Sukses")
+        if (imageUrl.length != 0) {
+            setUploading(false)
+        }
         // fields check
-        if (!deskripsi || !subhiburan || !namahiburan || !harga || !foto)
-            return setError('isi semua data');
-        // post structure
-        let hiburan = {
-            namahiburan,
-            subhiburan,
-            harga,
-            deskripsi,
-            foto
-        };
-        // save the post
-        let response1 = await fetch('/api/db_hiburan', {
-            method: 'POST',
-            body: JSON.stringify(hiburan),
-        });
-        // get the data
-        let data = await response1.json();
-        if (data.success) {
-            // reset the fields
-            router.reload()
-            // set the message
-            return setMessage(data.message);
-
+        try {
+            // Update post
+            await fetch('/api/db_hiburan', {
+                method: 'PUT',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    namahiburan: _namahiburan,
+                    subhiburan: _subhiburan,
+                    deskripsi: _deskripsi,
+                    harga: _harga,
+                    foto: _foto,
+                    objectId: objectId
+                }),
+            });
+            // reload the page
+            alert('paket sukses diupdate')
+            router.push('/admin/tambah-hiburan');
+        } catch (error) {
+            // Stop publishing state
         }
-        else {
-            // set the error
-            return setError(data.message);
-        }
-
     };
     const onAddItemArray = () => {
-        setSubhiburan(subhiburan => [...subhiburan, subtemp]);
+        setSubhiburan(_subhiburan => [..._subhiburan, subtemp]);
         setSubtemp('')
-        console.log(subhiburan)
 
     };
-
     const removeItemArray = (data) => {
-        var index = subhiburan.indexOf(data)
+        var index = _subhiburan.indexOf(data)
         if (index >= 0) {
-            if (subhiburan.length === 0) {
+            if (_subhiburan.length === 0) {
                 setSubhiburan([])
             } else {
-                setSubhiburan(subhiburan => [...subhiburan.slice(0, index), ...subhiburan.slice(index + 1)])
+                setSubhiburan(tim => [...tim.slice(0, index), ...tim.slice(index + 1)])
             }
         }
+
+
     };
     const uploadToClient = (event) => {
         if (event.target.files && event.target.files[0]) {
+            const i = event.target.files[0];
             var x = document.getElementById("image");
 
-            const i = event.target.files[0];
-            setFoto(array => [...array, i.name])
+            setGambarNew(array => [...array, i.name])
             setImage(array => [...array, i]);
             setCreateObjectURL(array => [...array, URL.createObjectURL(i)]);
         }
     };
+
+
     const removeItemArrayGambar = (data) => {
-        var index = foto1.indexOf(data)
+        var index = _foto.indexOf(data)
         if (index >= 0) {
-            if (foto.length === 0) {
+            if (_foto.length === 0) {
                 setFoto([])
-                setImage([])
-                setCreateObjectURL([])
             } else {
                 setFoto(array => [...array.slice(0, index), ...array.slice(index + 1)])
-                setImage(array => [...array.slice(0, index), ...array.slice(index + 1)])
-                setCreateObjectURL(array => [...array.slice(0, index), ...array.slice(index + 1)])
             }
         }
     }
 
+    const removeItemArrayGambarNew = (data) => {
+        var index = _gambarNew.indexOf(data)
+        if (index >= 0) {
+            if (_gambarNew.length === 0) {
+                setGambarNew([])
+                setFoto([])
+                setCreateObjectURL([])
+            } else {
+                setGambarNew(array => [...array.slice(0, index), ...array.slice(index + 1)])
+                setFoto(array => [...array.slice(0, index), ...array.slice(index + 1)])
+                setCreateObjectURL(array => [...array.slice(0, index), ...array.slice(index + 1)])
+            }
+        }
+    }
+    
     return (
         <>
 
@@ -133,19 +166,19 @@ export default function Tambahhiburan() {
                     <form onSubmit={handlePost} >
                         <div className="col-lg-12">
                             <div className="mt-2 col-lg-6 col-md-10">
-                                {foto.length === 0 ? (
+                                {_foto.length === 0 ? (
                                     <h4>Daftar Foto</h4>
                                 ) : (
                                     <>
 
-                                        {foto.map((data, i) => (
+                                        {_foto.map((data, i) => (
                                             <>
                                                 <div className='cols-2 mt-3 mb-3 row row-cols-2'>
                                                     <div className='col-10 col-md-10'>
-                                                        <img id='image' className='img-fluid d-block border border-dark' width={300} height={300} src={createObjectURL[i]} />
+                                                        <img id='image' className='img-fluid d-block border border-dark' width={300} height={300} src={`${data}`} />
                                                     </div>
                                                     <div className='col-10 col-md-2'>
-                                                        <button className="form-control"
+                                                        <button className="form-control" type='button'
                                                             onClick={() => removeItemArrayGambar(data)}
                                                         >
                                                             <i className="fa fa-trash"></i></button>
@@ -156,6 +189,31 @@ export default function Tambahhiburan() {
                                             </>
 
 
+                                        ))}
+                                    </>
+                                )}
+                                {_gambarNew.length === 0 ? (
+                                    <></>
+                                ) : (
+                                    <>
+
+                                        {_gambarNew.map((data, i) => (
+
+                                            <>
+                                                <div className='cols-2 mt-3 mb-3 row row-cols-2'>
+                                                    <div className='col-10 col-md-10'>
+                                                        <img id='image' className='img-fluid d-block border border-dark' width={300} height={300} src={createObjectURL[i]} />
+                                                    </div>
+                                                    <div className='col-10 col-md-2'>
+                                                        <button className="form-control"
+                                                            type='button'
+                                                            onClick={() => removeItemArrayGambarNew(data)}
+                                                        >
+                                                            <i className="fa fa-trash"></i></button>
+                                                    </div>
+
+                                                </div>
+                                            </>
                                         ))}
                                     </>
                                 )}
@@ -171,7 +229,7 @@ export default function Tambahhiburan() {
                                     className="form-control"
                                     placeholder="Nama Hiburan"
                                     onChange={(e) => setNamahiburan(e.target.value)}
-                                    value={namahiburan}
+                                    value={_namahiburan}
                                 />
                                 <div className="validate" />
                             </div>
@@ -195,12 +253,12 @@ export default function Tambahhiburan() {
                                 <label style={{ color: "white" }} className="labels">Daftar Sub Hiburan</label>
                             </div>
                             <div className='row col-lg-6 col-md-10 mt-3 form-group'>
-                                {subhiburan.length === 0 ? (
+                                {_subhiburan.length === 0 ? (
                                     <label style={{ color: "white" }}>Isi Sub Hiburan</label>
                                 ) : (
                                     <>
 
-                                            {subhiburan.map((data, i) => (
+                                            {_subhiburan.map((data, i) => (
                                             <>
                                                 <div className="col-md-10 col-md-10">
                                                     <input type="text" id={i} className="form-control col-10 mt-2 col-md-10" value={data} readOnly />
@@ -225,7 +283,7 @@ export default function Tambahhiburan() {
                                     className="form-control"
                                     placeholder="Harga"
                                     onChange={(e) => setHarga(e.target.value)}
-                                    value={harga}
+                                    value={_harga}
                                 />
                                 <div className="validate" />
                             </div>
@@ -237,7 +295,7 @@ export default function Tambahhiburan() {
                                     className="form-control"
                                     placeholder="Deskripsi"
                                     onChange={(e) => setDeskripsi(e.target.value)}
-                                    value={deskripsi}
+                                    value={_deskripsi}
                                 />
                                 <div className="validate" />
                             </div>
@@ -255,8 +313,7 @@ export default function Tambahhiburan() {
                     </form>
                 </div>
             </section>
-            <MapHiburan />
-
+\
         </>
     )
 }

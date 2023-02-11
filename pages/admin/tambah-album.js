@@ -1,5 +1,6 @@
 import { Link, Image } from "next/link";
 import { useState } from 'react';
+import { useRouter } from 'next/router';
 import useSWR from 'swr'
 import Cardfoto from '../../components/admin/album/album'
 export default function Album() {
@@ -10,11 +11,8 @@ export default function Album() {
     const [error, setError] = useState('');
     const [message, setMessage] = useState('');
     const [uploading, setUploading] = useState(false)
-    const clearInput = () => {
-        setDeskripsi('');
-        setFoto('');
-        setUploading(false)
-    }
+    const router = useRouter()
+
 
     const handlePost = async (e) => {
         e.preventDefault();
@@ -38,7 +36,6 @@ export default function Album() {
         // reset error and message
         setError('');
         setMessage('');
-        clearInput();
         // alert("Penambahan Data Sukses")
         // fields check
         if (!deskripsi || !foto)

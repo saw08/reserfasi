@@ -49,6 +49,44 @@ async function deleteaAlbum(req, res) {
     });
   }
 };
+async function updateAlbum(req, res) {
+  const {
+    foto,
+    deskripsi,
+    objectId, } = req.body
+  var ObjectId = require('mongodb').ObjectId;
+  const convertedObjectId = new ObjectId(objectId);
+  try {
+    // connect to the database
+    let { db } = await connectToDatabase();
+    // update the published status of the post
+    await db.collection('hiburan').updateOne(
+      {
+        '_id': convertedObjectId
+      },
+      {
+        $set: {
+          'namahiburan': namahiburan,
+          'harga': harga,
+          'subhiburan': subhiburan,
+          'deskripsi': deskripsi,
+          'foto': foto,
+        }
+      }
+    );
+    // return a message
+    return res.json({
+      message: 'Post updated successfully',
+      success: true,
+    });
+  } catch (error) {
+    // return an error
+    return res.json({
+      message: new Error(error).message,
+      success: false,
+    });
+  }
+}
 // menambah data kedalam collection mahasiswa
 async function addAlbum(req, res) {
   try {

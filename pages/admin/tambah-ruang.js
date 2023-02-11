@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { useRouter } from 'next/router'
 import Ruangan from '../../components/admin/ruangan/ruangan'
 
 
@@ -13,6 +14,8 @@ export default function Tambahruang() {
     const [error, setError] = useState('');
     const [message, setMessage] = useState('');
     const [uploading, setUploading] = useState(false)
+    const router = useRouter()
+
    
 
     const handlePost = async (e) => {
