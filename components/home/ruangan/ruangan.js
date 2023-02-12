@@ -18,7 +18,6 @@ export default function Ruangancp() {
     let ruangan = data['message']
     
     return (
-        
         <section id="menu" className="menu section-bg">
             <div className="container" data-aos="fade-up">
                 <div className="section-title">
@@ -26,16 +25,16 @@ export default function Ruangancp() {
                     <p>Daftar Menu</p>
                 </div>
                 <div className="row col-lg-12 text-white">
-                        {ruangan.length === 0 ? (
-                            <></>
-                        ) : (
-                            <>
+                    {ruangan.length === 0 ? (
+                        <></>
+                    ) : (
+                        <>
 
-                                {ruangan.map((data, i) => (
-                                    <Cardruang props={data} />
-                                ))}
-                            </>
-                        )}
+                            {ruangan.map((data, i) => (
+                                <Cardruang props={data} />
+                            ))}
+                        </>
+                    )}
                 </div>
             </div>
         </section>

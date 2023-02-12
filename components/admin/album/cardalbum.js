@@ -1,4 +1,5 @@
-import { useState } from 'react';
+import Link from 'next/link';
+
 export default function Cardpesanan({ props }) {
     const foto = "/" + props.foto
     const deleteAlbum = async () => {
@@ -23,17 +24,29 @@ export default function Cardpesanan({ props }) {
     };
     return (
         <div className="col-lg-3 col-md-4">
-            <div className="gallery-item">
-                    <img src={props.foto} alt className="img-fluid" />
-                
+            <div className=''>
+                <div className="profile-card-6">
+                    <img src={props.foto} className="img img-fluid" height={300} width={300} style={{ objectFit: "cover" }} />
+                    <div className="profile-name">{` ${props.deskripsi}`}</div>
+                </div>
             </div>
             <div>
-                <label>{` ${props.deskripsi}`}</label>
                 <button type="button"
                     onClick={() => deleteAlbum()}
                     className="btn btn-outline-secondary mx-3" >
                     HAPUS
                 </button>
+                <Link className="btn btn-outline-secondary" href={{
+                    pathname: './edit-album',
+                    query: {
+                        deskripsi: props.deskripsi,
+                        foto: props.foto,
+                        objectId: props._id
+                    }
+
+                }}>
+                    edit
+                </Link>
             </div>
         </div>
     )

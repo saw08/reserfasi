@@ -4,30 +4,8 @@ import Link from 'next/link';
 
 
 export default function Cardruangan({ props }) {
-    const [deleting, setDeleting] = useState(false);
-    const router = useRouter();
     let namaHasil = props.namaruang.split(" ").join("");
     
-    const deleteRuang = async () => {
-        try {
-            console.log('Try')
-            // Delete post
-            await fetch('/api/db_ruangan', {
-                method: 'DELETE',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({
-                    _id: props._id,
-                }),
-            });
-            // reset the deleting state
-            // reload the page
-            alert('ruangan Terhapus')
-        } catch (error) {
-            // stop deleting state
-        }
-    };
     return (
         <div className='p-2 col-lg-4 '>
             <div  style={{ borderStyle: 'solid', borderColor: 'white', borderRadius: '0.3rem' }}>
@@ -71,28 +49,8 @@ export default function Cardruangan({ props }) {
                     <p>kategori :{props.kategori}</p>
                     <p>{props.deskripsi}</p>
                 </div>
-                <button type="button"
-                    onClick={() => deleteRuang()}
-                    className="btn btn-outline-secondary mx-2 mb-2" >
-                    HAPUS
-                </button>
-                <Link className="btn btn-outline-secondary mb-2" href={{
-                    pathname: './edit-ruangan',
-                    query: {
-                        namaruang: props.namaruang,
-                        kapasitas: props.kapasitas,
-                        foto1: JSON.stringify(props.foto1),
-                        kategori: props.kategori,
-                        deskripsi: props.deskripsi,
-                        objectId: props._id
-                    }
-
-                }}>
-                    Edit
-                </Link>
             </div>
         </div>
-        
     )
 }
 

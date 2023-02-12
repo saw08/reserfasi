@@ -102,12 +102,12 @@ a {
   position: absolute;
   top: 10px;
   left: 10px;
-  font-size: 25px;
+  font-size: 20px;
   font-weight: bold;
   color: #FFF;
-  padding: 15px 20px;
-  background: linear-gradient(160deg, rgba(0, 0, 0, 0.4) 60%, rgba(255, 255, 0, 0) 50%);
-  transition: all 0.15s linear;
+  padding: 10px;
+  background: linear-gradient(180deg, rgba(0, 0, 0, 0.6) 100%, rgba(255, 255, 255, 0) 30%);
+  transition: all 0.20s linear;
 }
 
 .profile-card-6 .profile-position {

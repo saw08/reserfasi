@@ -60,7 +60,7 @@ async function updateAlbum(req, res) {
     // connect to the database
     let { db } = await connectToDatabase();
     // update the published status of the post
-    await db.collection('hiburan').updateOne(
+    await db.collection('album').updateOne(
       {
         '_id': convertedObjectId
       },
