@@ -22,7 +22,7 @@ export default function Ruangancp() {
             <div className="container" data-aos="fade-up">
                 <div className="section-title">
                     <h2>Menu</h2>
-                    <p>Daftar Menu</p>
+                    <p>Daftar Ruangan</p>
                 </div>
                 <div className="row col-lg-12 text-white">
                     {ruangan.length === 0 ? (
