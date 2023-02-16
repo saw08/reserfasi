@@ -18,7 +18,7 @@ export default function Menumap() {
     let menu = data['message']
     return (
         <section id="menu" className="menu section-bg">
-            <div className="container" data-aos="fade-up">
+            <div className="container bg-dark" data-aos="fade-up">
                 <div className="section-title">
                     <h2>Menu</h2>
                     <p>Daftar Menu</p>

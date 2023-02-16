@@ -17,7 +17,7 @@ export default function Paketmap() {
 
     let paket = data['message']
     return (
-        <section id="menu" className="menu section-bg">
+        <section id="menu" className="menu section-bg  bg-dark">
             <div className="container" >
                 <div className="section-title">
                     <h2>Paket</h2>
