@@ -8,9 +8,12 @@ export default function Tambahpaket() {
     return (
         <>
             <Paket />
-            <Menu/>
-            <Paketmap />
-            <Menumap/>
+            <Menu />
+            <div className='bg-dark'>
+
+                <Paketmap />
+                <Menumap />
+            </div>
         </>
     )
 }

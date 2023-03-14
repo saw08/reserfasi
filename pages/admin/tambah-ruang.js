@@ -211,7 +211,9 @@ export default function Tambahruang() {
                     </form>
                 </div>
             </section>
-            <Ruangan></Ruangan>
+            <div className='bg-dark'>
+                <Ruangan></Ruangan>
+            </div>
         </>
     )
 }

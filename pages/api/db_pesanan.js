@@ -12,13 +12,13 @@ async function getPesanan(req, res) {
             .find({
             })
             .toArray();
-        let hiburan = await db
-            .collection('hiburan')
+        let menu = await db
+            .collection('menu')
             .find({
             })
             .toArray();
-        let menu = await db
-            .collection('menu')
+        let hiburan = await db
+            .collection('hiburan')
             .find({
             })
             .toArray();
@@ -27,8 +27,8 @@ async function getPesanan(req, res) {
             .find({
             })
             .toArray();
-        let transaksi = await db
-            .collection('transaksi')
+        let pesanan = await db
+            .collection('pesan')
             .find({
             })
             .toArray();
@@ -37,7 +37,7 @@ async function getPesanan(req, res) {
         hasil['menu'] = menu
         hasil['ruangan'] = ruangan
         hasil['hiburan'] = hiburan
-        hasil['transaksi'] = transaksi
+        hasil['pesanan'] = pesanan
         // return the posts
         return res.json({
             message: JSON.parse(JSON.stringify(hasil)),
